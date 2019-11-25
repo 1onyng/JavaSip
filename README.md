@@ -19,7 +19,7 @@ JavaSip is built using the MERN stack (MongoDB, Express, React, and Node). The b
 ## Technical Challenges
 
 Users will be able to display a map of coffee shops based on location using Google maps API, which will also render dynamically as the user changes location. 
-
+`
 # Group Members and Work Breakdown
 
 Group members: Tristan Mockler, Tony Ng, Mohamed Abdelhalim
