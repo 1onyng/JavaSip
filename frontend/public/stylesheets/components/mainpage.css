@@ -1,7 +1,7 @@
 .main-page {
   background-image: url("/stylesheets/images/latte.jpg");; 
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: left center;
   display: flex; 
   flex-direction: column;
   justify-content: space-between;  
