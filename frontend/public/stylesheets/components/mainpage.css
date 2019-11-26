@@ -1,0 +1,29 @@
+.main-page {
+  background-image: url("/stylesheets/images/latte.jpg");; 
+  background-repeat: no-repeat;
+  background-position: left center;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;  
+  height: 500px; 
+  margin-top: 0px; 
+  background-size: cover; 
+}
+
+/* .main-page-title {   
+  width: 120px; 
+  height: auto; 
+} */
+
+.footer-main-page {
+  color: white; 
+  text-align: right; 
+  font-family: sans-serif; 
+  margin-right: 20px; 
+  margin-bottom: 10px; 
+}
+
+.footer-main-page > a {
+  padding-right: 12px; 
+  font-size: 12px; 
+}
