@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -53,13 +54,22 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
+      <div className="login-form-container">
+        <div className="signup-header">
+          <div className="signup-logo">
+            <Link to={'/'} ><img className="logo" src="stylesheets/images/javalogo.png" /></Link>
+          </div>
+        </div>
+        <div className="signup-page-contents">
+        <form onSubmit={this.handleSubmit} className="signup-form">
+          <div className="login-form">
+            <p className="signup-description">Sign Up for JavaSip</p>
+            <p className="signup-tagline"> Welcome Back</p>
               <input type="text"
+                className="login-username"
                 value={this.state.username}
                 onChange={this.update('username')}
-                placeholder="username"
+                placeholder="Username"
               />
             <br/>
               <input type="password"
@@ -68,10 +78,18 @@ class LoginForm extends React.Component {
                 placeholder="Password"
               />
             <br/>
-            <input type="submit" value="Submit" />
+            <button className="signup-btn">Log In</button>
             {this.renderErrors()}
           </div>
+            <div className="redirect-login">
+              <p className="redirect-description">New to JavaSip?</p>
+              <Link className="redirect-login-link" to={'/signup'}>Sign Up</Link>
+            </div>
         </form>
+        <div className="signup-image">
+          <img src="stylesheets/images/shop.png" />
+        </div>  
+        </div>
       </div>
     );
   }
