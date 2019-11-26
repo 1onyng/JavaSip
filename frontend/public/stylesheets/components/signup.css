@@ -1,0 +1,43 @@
+.signup-header {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  background: #6f4e37; 
+  height: 90px; 
+}
+
+.signup-logo {
+  position: absolute; 
+  width: 150px;
+  height: 40px; 
+  margin: 0 auto; 
+}
+
+input[type=text], input[type=password] {
+  padding: 14px 20px;
+  margin: 0px 0;
+  box-sizing: border-box;
+  color: black;
+}
+
+.signup-btn {
+  transition: background-color 0.5s ease;
+  position: absolute; 
+  left: 15px;  
+  bottom: 125px;
+  background: #6f4e37;
+  width: 295px;
+  height: 60px;  
+  font-size: 16px;
+  text-align: center;
+  margin: auto;
+  border-radius: 3px; 
+  color: white;
+  font-family: sans-serif; 
+  font-weight: 500;    
+}
+
+.signup-btn:hover {
+  transition: .75s ease;
+  background-color: #896044;
+}
