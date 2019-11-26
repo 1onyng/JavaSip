@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
         );
 });
 
-router.post('/', passport.authenticate('jwt', { session: false }),
+router.post('/new', passport.authenticate('jwt', { session: false }),
     (req, res) => {
       const { errors, isValid } = validateReviewInput(req.body);
         
@@ -33,12 +33,12 @@ router.post('/', passport.authenticate('jwt', { session: false }),
       }
 
       const newReview = new Review({
-        author: req.review.author,
-        business: req.review.business,
-        rate: req.review.rate,
-        comment: req.review.comment
+        author: req.user.id,
+        // business: req.buisness.id,
+        rate: req.body.rate,
+        comment: req.body.comment
       });
-  
+      console.log(newReview)
       newReview.save().then(review => res.json(review));
     }
   );
