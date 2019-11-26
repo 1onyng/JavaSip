@@ -24,6 +24,7 @@ router.get('/user/:user_id', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+
   Business.findById(req.params.id)
     .then(business => res.json(business))
     .catch(err =>
@@ -31,7 +32,7 @@ router.get('/:id', (req, res) => {
     );
 });
 
-router.post('/',
+router.post('/new',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateBusinessInput(req.body);
