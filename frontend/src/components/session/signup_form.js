@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -58,6 +59,11 @@ class SignupForm extends React.Component {
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit}>
+          <div className="signup-header">
+            <div className="signup-logo">
+            <Link to={'/'} ><img className="logo" src="stylesheets/images/javalogo.png" /></Link>
+          </div>
+          </div>
           <div className="login-form">
             <br/>
               <input type="text"
@@ -84,7 +90,7 @@ class SignupForm extends React.Component {
                 placeholder="Confirm Password"
               />
             <br/>
-            <input type="submit" value="Submit" />
+            <button className="signup-btn">Sign Up</button>
             {this.renderErrors()}
           </div>
         </form>
