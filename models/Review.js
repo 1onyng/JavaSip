@@ -10,8 +10,8 @@ const ReviewSchema = new Schema({
   }, 
   business: {
     type: Schema.Types.ObjectId,
-    ref: 'Business',
-    required: true
+    ref: 'Businesses',
+    required: false
   }, 
   rate: {
     type: Number,
