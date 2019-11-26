@@ -7,6 +7,7 @@ class MainPage extends React.Component {
       <div>
         <h1>JavaSip</h1>
         <footer>
+          <span>contributors: </span>
           <a href="https://github.com/1onyng">Tony</a>
           <a href="https://github.com/tmockler22">Tristan</a>
           <a href="https://github.com/RyanGonzalezUSA">Mohamed</a>
