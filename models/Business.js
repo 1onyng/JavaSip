@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const BuisnessSchema = new Schema({
+const BusinessSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  buisness_name: {
+  business_name: {
     type: String,
     required: true
   },
@@ -48,4 +48,4 @@ const BuisnessSchema = new Schema({
   }
 });
 
-module.exports = Buisness = mongoose.model('buisness', BuisnessSchema);
+module.exports = Business = mongoose.model('business', BusinessSchema);
