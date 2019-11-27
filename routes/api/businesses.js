@@ -24,7 +24,6 @@ router.get('/user/:user_id', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-
   Business.findById(req.params.id)
     .then(business => {
       Review.find({ business: business.id }).then(reviews => {
@@ -58,8 +57,6 @@ router.post('/id/review', (req, res) => {
         })
       })
     })
-
-    
   }
 })
 
