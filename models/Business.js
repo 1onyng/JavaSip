@@ -42,6 +42,10 @@ const BusinessSchema = new Schema({
     type: Number,
     required: false
   },
+  reviews: [{
+    type: Schema.Types.ObjectId,
+    ref: 'reviews'
+  }],
   date: {
     type: Date,
     default: Date.now
