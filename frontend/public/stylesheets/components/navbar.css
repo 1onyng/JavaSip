@@ -3,10 +3,24 @@
   justify-content: space-between; 
 }
 
+.logout-button {
+  margin-top: -20px;
+  transition: .75s ease;
+  margin-right: 40px;
+  font-weight: 550; 
+  border: 2px solid white; 
+  padding: 8px 20px; 
+}
+
+.logout-button:hover {
+  background-color: white; 
+  color: gray; 
+}
+
 .nav-logo {
   width: 150px; 
   height: auto; 
-    margin-left: 30px; 
+  margin-left: 30px; 
   margin-top: 25px; 
 }
 .nav-links {
@@ -14,9 +28,9 @@
   justify-content: flex-end;
   font-family: sans-serif;  
   color: white; 
-  font-size: 15.5px;
-  padding-top: 40px;  
+  font-size: 15.5px; 
   justify-self: flex-end;
+  padding-top: 40px; 
 }
 
 .logo {
