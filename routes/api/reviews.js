@@ -31,10 +31,10 @@ router.post('/new', passport.authenticate('jwt', { session: false }),
       if (!isValid) {
         return res.status(400).json(errors);
       }
-
+      
       const newReview = new Review({
         author: req.user.id,
-        // business: req.buisness.id,
+        // business: req.business.id,
         rate: req.body.rate,
         comment: req.body.comment
       });
