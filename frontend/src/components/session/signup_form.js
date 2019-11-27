@@ -49,7 +49,7 @@ class SignupForm extends React.Component {
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="session-errors">
         {Object.keys(this.state.errors).map((error, i) => (
           <li key={`error-${i}`}>
             {this.state.errors[error]}
@@ -98,12 +98,12 @@ class SignupForm extends React.Component {
               />
             <br/>
             <button className="signup-btn">Sign Up</button>
-            {this.renderErrors()}
           </div>
           <div className="redirect-login">
           <p className="redirect-description">Already on JavSip?</p>
               <Link className="redirect-login-link" to={'/login'}>Log In</Link>
           </div>
+            {this.renderErrors()}
         </form>
         <div className="signup-image"> 
           <img src="stylesheets/images/shop.png"/>

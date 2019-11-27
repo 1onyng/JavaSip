@@ -6,6 +6,13 @@
   height: 90px; 
 }
 
+.session-errors {
+  text-align: center; 
+  margin-top: 10px; 
+  font-size: 12px; 
+  color: gray; 
+}
+
 .signup-logo {
   position: absolute; 
   width: 150px;
