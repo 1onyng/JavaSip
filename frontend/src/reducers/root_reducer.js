@@ -5,7 +5,7 @@ import businesses from './businesses_reducer';
 
 const RootReducer = combineReducers({
   session: session, 
-  errors: errors , 
+  errors: errors, 
   businesses: businesses
 });
 
