@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// const Business = require('./Business.js').schema;
 
 const ReviewSchema = new Schema({  
   author: {

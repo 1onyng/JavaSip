@@ -5,11 +5,7 @@ const validNumber = require("./valid-number");
 module.exports = function validateRegisterInput(data) {
   let errors = {};
   data.comment = validText(data.comment) ? data.comment : "";
-
-  // if (Validator.isNumeric(data.rate)) {
-  //   errors.rate = "rate field is required";
-  // }
-
+ 
   if (!validNumber(data.rate, 1, 5)) {
     errors.rate = "rate must be number between 1 and 5";
   }
