@@ -17,7 +17,7 @@
   position: absolute; 
   width: 150px;
   height: 40px; 
-  margin: 0 auto; 
+  margin: 8px auto; 
 }
 
 input[type=text], input[type=password] {
