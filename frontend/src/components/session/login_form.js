@@ -37,12 +37,11 @@ class LoginForm extends React.Component {
       password: this.state.password
     };
     this.props.login(user)
-    .then(()=> this.props.history.push('/'))
   }
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="session-errors">
         {Object.keys(this.state.errors).map((error, i) => (
           <li key={`error-${i}`}>
             {this.state.errors[error]}
@@ -79,12 +78,12 @@ class LoginForm extends React.Component {
               />
             <br/>
             <button className="signup-btn">Log In</button>
-            {this.renderErrors()}
           </div>
             <div className="redirect-login">
               <p className="redirect-description">New to JavaSip?</p>
               <Link className="redirect-login-link" to={'/signup'}>Sign Up</Link>
             </div>
+            {this.renderErrors()}
         </form>
         <div className="signup-image">
           <img src="stylesheets/images/shop.png" />
