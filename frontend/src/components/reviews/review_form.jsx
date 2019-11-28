@@ -1,6 +1,6 @@
 import React from 'react';
 
-class EventForm extends React.Component{
+class ReviewForm extends React.Component{
   constructor(props){
     super(props);
     this.state = this.props.event;
@@ -27,4 +27,4 @@ class EventForm extends React.Component{
   }
 }
 
-export default EventForm;
+export default ReviewForm;
