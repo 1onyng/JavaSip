@@ -9,3 +9,5 @@ export const deleteReview = (reviewId, data) => {
 export const updateReview = (reviewId, data) => {
   return axios.put(`/api/reviews/${reviewId}/update`, data)
 };
+
+
