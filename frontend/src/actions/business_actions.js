@@ -25,7 +25,7 @@ export const fetchBusiness = id => dispatch => {
 };
 
 
-export const fetchBusinesses = (search, bounds) => (dispatch) => {
-  return BusinessApiUtil.fetchBusinesses(search, bounds)
+export const fetchBusinesses = (search) => (dispatch) => {
+  return BusinessApiUtil.fetchBusinesses(search)
     .then((businesses) => {dispatch(receiveBusinesses(businesses))})
 };
