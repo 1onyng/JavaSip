@@ -35,7 +35,7 @@ class NavBar extends React.Component {
         <div className="nav-bar">
           <div className="nav-logo">
 
-            <Link to={'/'} className="main-page-title"><img className="logo" src="/stylesheets/images/javalogo.png" /></Link>
+            <Link to={'/'} className="main-page-title"><img className="logo" src="/stylesheets/images/javasiplogo.png" /></Link>
         
           </div>
           <div className="nav-links">
