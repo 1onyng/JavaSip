@@ -5,9 +5,11 @@ import { connect } from "react-redux";
 const mapStateToProps = (state, ownProps) => {
   const businessId = (ownProps.match.params.businessId);
   const business = state.entities.businesses[businessId]; 
+  const currentUser = state.session.currentUser;
   const reviews = Object.keys(state.entities.reviews).map(id => state.entities.reviews[id])
 
   return {
+    currentUser,
     business,
     businessId,
     reviews,
