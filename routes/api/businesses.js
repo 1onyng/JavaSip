@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/search', (req, res) => {
-  Business.find({ city: req.params.search })
+  Business.find({ city: req.body.search })
     .sort({ date: -1 })
     .then(businesses => res.json(businesses))
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
