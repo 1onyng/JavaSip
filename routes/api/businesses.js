@@ -13,6 +13,13 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
 });
 
+router.get('/search', (req, res) => {
+  Business.find({ city: req.params.search })
+    .sort({ date: -1 })
+    .then(businesses => res.json(businesses))
+    .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
+});
+
 router.get('/user/:user_id', (req, res) => {
   Business.find({ user: req.params.user_id })
     .sort({ date: -1 })
