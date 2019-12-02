@@ -64,7 +64,7 @@ class SignupForm extends React.Component {
       <div className="login-form-container">
         <div className="signup-header">
           <div className="signup-logo">
-            <Link to={'/'} ><img className="logo" src="stylesheets/images/coffeelogo4.png" /></Link>
+            <Link to={'/'} ><img className="logo" src="stylesheets/images/javasiplogo.png" /></Link>
           </div>
         </div>
         <div className="signup-page-contents">
