@@ -14,11 +14,11 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser }) => {
   ////////////////////////////////////
 
   let deleteButton;
-
-  if (review.author === currentUser) {
+  debugger
+  if (review.author === currentUser.id) {
     deleteButton = (
       <div className="delete_button">
-        <button onClick={() => removeReview(review.id)}>
+        <button onClick={() => removeReview(review._id)}>
           <FontAwesomeIcon icon="trash-alt" />
         </button>
       </div>
@@ -46,7 +46,7 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser }) => {
         </div>
         <div className="ri-body">
           <div className={`br-mid-${review.rate}`}></div>
-          <p>{review.body}</p>
+          <p>{review.comment}</p>
           {deleteButton}
           {/* <div className="review-imgs">{reviewImg}</div> */}
         </div>

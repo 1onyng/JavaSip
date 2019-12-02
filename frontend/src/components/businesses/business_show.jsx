@@ -10,10 +10,11 @@ class BusinessShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchBusiness(this.props.businessId);
+    this.props.fetchUsers();
   }
 
   render() {
-    const { business, reviews, businessId, currentUser, users } = this.props;
+    const { business, reviews, businessId, currentUser, users, removeReview } = this.props;
 
     let reviewLink;
     let alreadySubmitted = false;
@@ -33,9 +34,9 @@ class BusinessShow extends React.Component {
     }
     /////////////////////////////
 
-    if (!business) {
-      return null;
-    }
+    // if (!business) {
+    //   return null;
+    // }
 
     // const reviewsList = reviews.map(review => <h1>{review.comment}</h1>);
 
@@ -50,9 +51,11 @@ class BusinessShow extends React.Component {
     const reviewsList = reviews.map(review => {
       return (
         <BusinessShowItem
-          key={review.id}
+          key={review._id}
           review={review}
           user={users[review.author]}
+          currentUser={currentUser}
+          removeReview={removeReview}
         />
       );
     });
@@ -65,7 +68,7 @@ class BusinessShow extends React.Component {
       // }); 
 
       let address1 = business.street_address
-      let address2 = business.city.concat(", ", business.state);
+      let address2 = (business.city.concat(", ", business.state));
 
       return (
         <>
@@ -78,7 +81,7 @@ class BusinessShow extends React.Component {
                     <div
                       // insert business rating
                     ></div>
-                    <p>{`${this.business.reviews_count} reviews`}</p>
+                    <p>{`${business.reviews.length} reviews`}</p>
                   </div>
 
                 </div>
@@ -103,7 +106,7 @@ class BusinessShow extends React.Component {
                     <div className="map-info-phone">
                       <p>
                         <FontAwesomeIcon icon="phone" />
-                        {this.business.phone_number}
+                        {business.phone}
                       </p>
                     </div>
                     <div className="map-info-website">
