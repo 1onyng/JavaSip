@@ -13,7 +13,6 @@ class BusinessShow extends React.Component {
       return null;
     }
     const reviewsList = reviews.map(review => <h1>{review.comment}</h1>);
-    debugger
     const display = reviews.length !== 0 ? reviewsList : null;
     return (
       <section>

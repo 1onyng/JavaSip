@@ -12,7 +12,7 @@ const receiveBusiness = (payload) => {
   };
 };
 
-export const receiveBusinesses = (businesses) => {
+export const receiveBusinesses = (businesses) => { 
   return ({
     type: RECEIVE_BUSINESSES,
     businesses,
@@ -25,7 +25,7 @@ export const fetchBusiness = id => dispatch => {
 };
 
 
-export const fetchBusinesses = (search) => (dispatch) => {
+export const fetchBusinesses = (search) => (dispatch) => { 
   return BusinessApiUtil.fetchBusinesses(search)
     .then((businesses) => {dispatch(receiveBusinesses(businesses))})
 };
