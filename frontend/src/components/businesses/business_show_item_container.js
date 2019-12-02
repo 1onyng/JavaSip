@@ -1,6 +1,6 @@
 import { removeReview } from '../../actions/reviews_actions'
 import BusinessShowItem from "./business_show_item";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
