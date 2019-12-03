@@ -20,7 +20,7 @@
   margin: 8px auto; 
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], textarea {
   width: 280px; 
   padding: 5px 12px;
   margin-bottom: 12px;
