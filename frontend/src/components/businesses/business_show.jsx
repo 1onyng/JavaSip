@@ -32,21 +32,6 @@ class BusinessShow extends React.Component {
           <FontAwesomeIcon icon="star" />Write a Review</Link>
       );
     }
-    /////////////////////////////
-
-    // if (!business) {
-    //   return null;
-    // }
-
-    // const reviewsList = reviews.map(review => <h1>{review.comment}</h1>);
-
-    // const revs = reviews.length !== 0 ? reviewsList : null;
-    // return (
-    //   <section>
-    //     <h1>{business.business_name}</h1>
-    //     {revs}
-    //   </section>
-    // );
 
     const reviewsList = reviews.map(review => {
       return (
