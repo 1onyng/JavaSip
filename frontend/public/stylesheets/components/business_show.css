@@ -159,7 +159,7 @@
 .bh-images-list img{
     width:15.5vw;
     height:15.5vw;
-    transition: transform .2s; /* Animation */
+    transition: transform .2s; 
 }
 
 .bh-images-list img:hover{
