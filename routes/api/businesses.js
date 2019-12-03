@@ -22,8 +22,6 @@ router.get('/search/:searchLocation', (req, res) => {
     .then(businesses => {
       getImages('businesses')
       .then(imgUrls => res.json({businesses, imgUrls}))
-      
-    
     })
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
 });
@@ -42,9 +40,11 @@ router.get('/:id', (req, res) => {
   Business.findById(req.params.id)
     .then(business => {
       Review.find({ business: business.id }).then(reviews => {
-        const reviewsObj = {};
-        reviews.forEach(review => reviewsObj[review.id] = review);
-        res.send({ business: business, reviews: reviewsObj })
+        getImages('businesses').then(imgUrls=>{
+          const reviewsObj = {};
+          reviews.forEach(review => reviewsObj[review.id] = review);
+          res.send({ business: business, reviews: reviewsObj, imgUrls:imgUrls })
+        })
       })
     })
     .catch(err =>
@@ -68,9 +68,7 @@ router.post('/:id/review', (req, res, next) => {
         uploadMultiple(review._id, req, res)
         .then(data => { getImages(review.id)
         .then((imgUrls)=>{ res.send({review, images: imgUrls})});
-        }, (err)=> console.log(object))
-       
-        // res.send({review: review})
+        }, (err)=> console.log(err))
     });
   }
 })
