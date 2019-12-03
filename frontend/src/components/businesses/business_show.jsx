@@ -29,8 +29,8 @@ class BusinessShow extends React.Component {
 
     if (!alreadySubmitted && Boolean(currentUser)) {
       reviewLink = (
-        <Link className="review-link" to={`/businesses/${businessId}/review`}>
-          <FontAwesomeIcon icon="star" />Write a Review</Link>
+        <Link className="review-link" to={`/createReview/${businessId}`}>
+          <FontAwesomeIcon icon="star"/>Write a Review</Link>
       );
     }
 
