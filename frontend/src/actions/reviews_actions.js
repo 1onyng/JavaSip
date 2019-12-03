@@ -2,7 +2,7 @@ import * as ReviewsUtil from '../util/reviews_api_util';
 import { fetchBusiness } from "./business_actions";
 
 export const RECEIVE_ALL_Reviews = "RECEIVE_ALL_Reviews";
-export const RECEIVE_Review = "RECEIVE_Review";
+export const RECEIVE_REVIEW = "RECEIVE_REVIEW";
 export const REMOVE_REVIEW = "REMOVE_REVIEW";
 export const RECEIVE_REVIEWS_ERRORS = "RECEIVE_REVIEWS_ERRORS";
 
@@ -12,7 +12,7 @@ export const receiveAllReviews = reviews => ({
 });
 
 export const receiveReview = review => ({
-  type: RECEIVE_Review,
+  type: RECEIVE_REVIEW,
   review
 });
 
@@ -38,8 +38,9 @@ export const deleteReview = (reviewId) => dispatch => (
     err => dispatch(receiveErrors(err.response.data)))
 );
 
-// export const deleteReview = (reviewId, businessId) => dispatch => {
-//   return ReviewsUtil.deleteReview(reviewId).then(() => {
-//     return dispatch(fetchBusiness(businessId));
-//   });
-// };
+export const createReview = (businessId, formData) => dispatch => (
+  ReviewsUtil.createReview(businessId, formData)
+    .then(payload => dispatch(receiveReview(payload)),
+    err => dispatch(receiveErrors(err.response.data)))
+);
+

@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
-// TODO to be updated from tony work
-// import { createReview } from '../../actions/business_actions';
+import { createReview } from '../../actions/reviews_actions';
 import ReviewForm from './review_form';
 
-const mSTP = () => ({
+const mSTP = (state, ownParams) => ({
   review: { rate: 5, comment: '' },
-  formType: "Create Review"
+  formType: "Create Review",
+  businessId: ownParams.match.params.businessId
 });
 
 const mDTP = dispatch => ({
-  // submitEvent: event => dispatch(createEvent(event))
+  submitReview: (businessId, review) => dispatch(createReview(businessId, review))
 });
 
 export default connect(mSTP, mDTP)(ReviewForm);
