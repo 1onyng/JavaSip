@@ -13,7 +13,7 @@ class BusinessSearch extends React.Component {
 
   getBusinesses() {
      
-    const businessList = this.props.businesses.map((business, i) => <li key={i}>{business.business_name}</li>);
+    const businessList = this.props.businesses.map((business, i) => <div className="search-buisness"key={i}>{business.business_name}</div>);
     return businessList;
   }
 
@@ -24,10 +24,12 @@ class BusinessSearch extends React.Component {
         <div className="search-nav">
           <SearchNav />
         </div>
-        
-        <p>Browsing {this.props.search} Coffee Shops</p>
-        {this.getBusinesses()}
-      </div>
+        <p className="search-page-title">Browsing {this.props.search} Coffee Shops</p>
+          <div className="search-business-list">
+            {this.getBusinesses()}
+          </div>
+        </div>
+
     );
   }
 
