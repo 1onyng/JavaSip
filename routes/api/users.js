@@ -8,9 +8,24 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-// router.get("/test", (req, res) => {
-//   res.json({ msg: "This is the users route" });
+// router.get("/", (req, res) => {
+//   User.find()
+//     .sort({ date: -1 })
+//     .then(users => res.json(users))
+//     .catch(err => res.status(404).json({ nousersfound: "No users found" }));
 // });
+
+router.get("/", (req, res) => {
+  User.find()
+    .then(users => {
+      const usersObj = {};
+      users.forEach(user => usersObj[user._id] = user);
+      res.send(usersObj)
+    })
+    .catch(err => 
+      res.status(404).json({ nousersfound: "No users found" })
+    );
+});
 
 router.get(
   "/current",
