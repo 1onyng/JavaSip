@@ -6,6 +6,7 @@ const jwt_decode = require('jwt-decode');
 const Business = require('../../models/Business');
 const validateBusinessInput = require('../../validation/business');
 
+
 router.get('/', (req, res) => {
   Business.find()
     .sort({ date: -1 })
@@ -13,8 +14,8 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
 });
 
-router.get('/search', (req, res) => {
-  Business.find({ city: req.body.search })
+router.get('/search/:searchLocation', (req, res) => {
+  Business.find({ city: req.params.searchLocation })
     .sort({ date: -1 })
     .then(businesses => res.json(businesses))
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));

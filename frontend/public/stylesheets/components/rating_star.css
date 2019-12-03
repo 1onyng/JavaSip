@@ -1,0 +1,48 @@
+
+ .stars{
+  margin: 0;
+  padding: 0;
+  vertical-align: -webkit-baseline-middle;
+ }
+.stars img:last-of-type {
+margin-right: 0.5em;
+}
+ .read-only-stars{
+  margin: 0;
+  padding: 0;
+ }
+
+ .stars::after,
+ .read-only-stars::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.star{
+  margin: 0px;
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-attachment: inherit;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+  float: left;
+  overflow: auto;
+}
+
+.hover{
+  background-image: url("/stylesheets/images/coffee-cup-full.svg");
+  transform: scale(1.1);
+}
+#rateContainer{
+  margin: 0.5em 0.5em 1em 0.5em
+}
+
+.star-info{
+  color: #333 !important;
+  /* font-size: 12px !important; */
+}
