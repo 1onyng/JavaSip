@@ -16,7 +16,8 @@ class MainPage extends React.Component {
 
   getBusinesses() {
     const businessList = this.props.businesses.map((business, i) => <div className="main-business" key={i}><Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link></div>);
-    return businessList;
+    const newBusinesses = businessList.slice(0, 3);
+    return newBusinesses; 
   }
 
   update(field) {

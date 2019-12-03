@@ -79,13 +79,42 @@
   background-color: #896044;
 }
 
+.title-div {
+  margin-top: 40px; 
+  padding-left: 80px; 
+  height: 24px; 
+}
 .search-page-title {
   font-size: 24px;
   font-family: sans-serif; 
-   
-  
+  padding-bottom: 40px; 
 }
 .search-business-list {
+  padding-top: 30px; 
   width: 600px; 
+  margin-right: 40px; 
 }
 
+.search-business {
+  height: 250px; 
+  width: 600px; 
+  margin-left: 80px; 
+  border-bottom: 1px solid lightgray; 
+}
+
+.search-page-subtitle {
+  margin-left: 80px; 
+  padding: 20px 40px 0px 0px;  
+  font-size: 14px; 
+  font-weight: bold; 
+  font-family: sans-serif; 
+}
+
+.index-contents {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.map-div {
+  margin: 100px 90px; 
+}
