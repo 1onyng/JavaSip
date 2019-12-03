@@ -16,7 +16,7 @@
 }
 
 .business-index {
-  width: 85%;
+  width: 90%;
   margin: 0 auto;  
 }
 
@@ -119,5 +119,15 @@
 .main-business-name {
   color: #0073bb;
   font-family: sans-serif;
-  font-size: 18px;  
+  font-weight: bold; 
+  font-size: 17px;
+  margin: 8px 12px; 
+  padding-top: 10px;  
+}
+
+.main-page-shop-img {
+  object-fit: cover;
+  object-position: bottom;
+  height: 180px;
+  width: 298px; 
 }
