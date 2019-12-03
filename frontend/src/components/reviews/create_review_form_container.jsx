@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 // TODO to be updated from tony work
-import { createReview } from '../../actions/business_actions';
+// import { createReview } from '../../actions/business_actions';
 import ReviewForm from './review_form';
 
 const mSTP = () => ({
@@ -9,7 +9,7 @@ const mSTP = () => ({
 });
 
 const mDTP = dispatch => ({
-  submitEvent: event => dispatch(createEvent(event))
+  // submitEvent: event => dispatch(createEvent(event))
 });
 
 export default connect(mSTP, mDTP)(ReviewForm);
