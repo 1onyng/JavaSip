@@ -8,8 +8,8 @@ const APIkey = require("./config/map_key").MapKey;
 class Map extends Component {
   static defaultProps = {
     center: {
-      lat: 37.8044,
-      lng: -122.2712
+      lat: 37.834416,
+      lng: -122.300707
     },
     zoom: 11
   };

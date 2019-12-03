@@ -9,13 +9,19 @@ class BusinessSearch extends React.Component {
   }
 
   componentDidMount() {
-    
     this.props.fetchBusinesses(this.props.search);
   }
 
   getBusinesses() {
      
-    const businessList = this.props.businesses.map((business, i) => <div className="search-business" key={i}><Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link></div>);
+    const businessList = this.props.businesses.map((business, i) => (
+    <div className="search-business" key={i}>
+        <img src={business.imgURL} className="business-search-image" />
+        <div className="business-search-info">
+      <Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link>
+          <div className="business-info"><p>{business.city}</p></div>
+        </div>
+      </div>));
     return businessList;
   }
 

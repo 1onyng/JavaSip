@@ -10,7 +10,7 @@
 
 # production
 /build
-/config/map_key
+src/components/businesses/config
 # misc
 .DS_Store
 .env.local
