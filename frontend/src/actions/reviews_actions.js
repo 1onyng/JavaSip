@@ -1,4 +1,5 @@
 import * as ReviewsUtil from '../util/reviews_api_util';
+import { fetchBusiness } from "./business_actions";
 
 export const RECEIVE_ALL_Reviews = "RECEIVE_ALL_Reviews";
 export const RECEIVE_REVIEW = "RECEIVE_REVIEW";
@@ -42,3 +43,4 @@ export const createReview = (businessId, formData) => dispatch => (
     .then(payload => dispatch(receiveReview(payload)),
     err => dispatch(receiveErrors(err.response.data)))
 );
+
