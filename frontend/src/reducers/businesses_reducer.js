@@ -3,13 +3,18 @@ import { RECEIVE_BUSINESS, RECEIVE_BUSINESSES } from '../actions/business_action
 const businessesReducer = (oldState = {}, action) => {
   
   Object.freeze(oldState);
+  let imageURLs;
   switch (action.type) {
     case RECEIVE_BUSINESS:
-      return Object.assign({}, oldState, { [action.payload.business._id]: action.payload.business });
+      imageURLs = action.payload.imgUrls;
+      let business = action.payload.business;
+      let img = imageURLs.filter(item => item.includes(business._id))[0];
+      business.imgURL = img;
+      return Object.assign({}, oldState, { [business._id]: business });
     case RECEIVE_BUSINESSES: 
     
       let businesses = action.businesses.data.businesses;
-      let imageURLs = action.businesses.data.imgUrls;
+      imageURLs = action.businesses.data.imgUrls;
       for (let i = 0; i < businesses.length; i++) {
         let img = imageURLs.filter(item => item.includes(businesses[i]._id))[0];
         businesses[i].imgURL = img ? img : "";

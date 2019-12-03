@@ -110,7 +110,7 @@ class BusinessShow extends React.Component {
                     </div> */}
                   </div>
                 </div>
-                {/* <div className="bh-images-list">{businessImg}</div> */}
+                <div className="bh-images-list"><img src={business.imgURL}/></div>
               </div>
             </div>
           </div>
