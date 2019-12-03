@@ -9,7 +9,6 @@ import SignupFormContainer from './session/signup_form_container';
 import BusinessShowContainer from "./businesses/business_show_container";
 import BusinessSearchContainer from "./businesses/business_search_container";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faLaptop, faSearch, faStar, faMapMarkerAlt, faPhone, faWindowRestore, faCamera, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
