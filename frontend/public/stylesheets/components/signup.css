@@ -20,11 +20,7 @@
   margin: 8px auto; 
 }
 
-<<<<<<< HEAD
-input[type=text], input[type=password], textarea {
-=======
 .session-input {
->>>>>>> 21b9204a1971c5b1c772ce30a850e853f9d2e337
   width: 280px; 
   padding: 5px 12px;
   margin-bottom: 12px;
