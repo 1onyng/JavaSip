@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BusinessShowItem from "./business_show_item";
 import SearchNav from "../nav/search_nav";
+import Map from './business_map_show_container';
 
 class BusinessShow extends React.Component {
   constructor(props) {
@@ -85,8 +86,8 @@ class BusinessShow extends React.Component {
             <div className="bh-images-container">
               <div className="bh-images">
                 <div className="map-container">
-                  <div className="businessMap">
-                    {/* insert map component */}
+                  <div className="businessMap">    
+                    <Map business={business}/>
                   </div>
                   <div className="map-info">
                     <div className="map-info-address">
