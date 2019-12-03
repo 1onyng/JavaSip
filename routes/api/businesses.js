@@ -5,6 +5,8 @@ const passport = require('passport');
 const jwt_decode = require('jwt-decode');
 const Business = require('../../models/Business');
 const validateBusinessInput = require('../../validation/business');
+const uploadMultiple = require('../../models/Images').uploadMultiple;
+const getImages = require('../../models/Images').getImages;
 
 
 router.get('/', (req, res) => {
@@ -45,8 +47,9 @@ router.get('/:id', (req, res) => {
     );
 });
 
-router.post('/:id/review', (req, res) => {
-  const token = req.headers.authorization;
+
+router.post('/:id/review', (req, res, next) => {
+   const token = req.headers.authorization;
   const user = jwt_decode(token);
 
   if (user) {
@@ -56,15 +59,18 @@ router.post('/:id/review', (req, res) => {
       business: req.body.businessId,
       author: user.id
     })
-
-    newReview.save().then(review => {
-      Business.findOne({_id: req.body.businessId}).then(business => {
-        business.reviews.push(review);
-        business.save().then(business => {
-          res.send({ business: business, review: review });
-        })
-      })
-    })
+      newReview.save().then(review => {
+        uploadMultiple(review._id, req, res)
+        .then(data => {
+          debugger
+          getImages(review.id).then((imgUrls)=>{
+            debugger;
+            res.send({review, images: imgUrls})
+          });
+        }, (err)=> console.log(object))
+       
+        // res.send({review: review})
+    });
   }
 })
 
