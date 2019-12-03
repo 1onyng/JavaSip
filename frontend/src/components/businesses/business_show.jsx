@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BusinessShowItem from "./business_show_item";
+import NavBar from "../nav/navbar";
 
 class BusinessShow extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class BusinessShow extends React.Component {
 
       return (
         <>
+        <NavBar/>
           <div className="business-header">
             <div className="bh-info-container">
               <div className="bh-info">
@@ -66,7 +68,7 @@ class BusinessShow extends React.Component {
                     <div
                       // insert business rating
                     ></div>
-                    <p>{`${business.reviews.length} reviews`}</p>
+                    {/* <p>{`${business.reviews.length} reviews`}</p> */}
                   </div>
 
                 </div>
@@ -94,12 +96,12 @@ class BusinessShow extends React.Component {
                         {business.phone}
                       </p>
                     </div>
-                    <div className="map-info-website">
+                    {/* <div className="map-info-website">
                       <p>
                         <FontAwesomeIcon icon="window-restore" />
-                        {/* insert business website */}
+                        insert business website
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 {/* <div className="bh-images-list">{businessImg}</div> */}
