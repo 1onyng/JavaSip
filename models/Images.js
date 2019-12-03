@@ -5,11 +5,48 @@ const multer = require('multer');
 const path = require( 'path' );
 const url = require('url');
 const router = express.Router();
-const accessKeyID = require("../../config/keys").AWSAccessKeyID;
-const secretAccessKey = require("../../config/keys").AWSSecretAccessKey;
-const region = require("../../config/keys").AWSRegion;
-const bucket = require("../../config/keys").AWSBucket;
+const accessKeyID = require("../config/keys").AWSAccessKeyID;
+const secretAccessKey = require("../config/keys").AWSSecretAccessKey;
+const region = require("../config/keys").AWSRegion;
+const bucket = require("../config/keys").AWSBucket;
 
+const s3 = new aws.S3({
+  accessKeyId: accessKeyID,
+  secretAccessKey:secretAccessKey,
+  region:region
+ });
+
+async function uploadToS3(folderName, file) {
+  
+  var params = {
+    Bucket: bucket,
+    Key: folderName + "/" + Date.now() +"-" + file.name ,
+    Body: file.data,
+  };
+  
+
+  // return await s3.createBucket(params, async function (err, data) {
+  //   debugger;
+  //   if(err){
+  //     console.log(err)
+  //     return err
+  //   }else{
+  //     console.log(data)
+  //     return data
+  //   }
+    return await s3.upload(params, function (err, data) {
+      debugger;
+      if (err) {
+      console.log('error in callback');
+      console.log(err);
+      return err
+      }else{
+      console.log('success');
+      console.log(data);
+      return data;
+    }
+    });
+}
 
 function checkFileType( file, cb ){
   const filetypes = /jpeg|jpg|png|gif/;
@@ -22,57 +59,90 @@ function checkFileType( file, cb ){
   }
  }
 
-const s3 = new aws.S3({
-  accessKeyId: accessKeyID,
-  secretAccessKey:secretAccessKey,
-  region:region
- });
 
- // folderNme: reviewId 123456dd7897bd
- // imagesCount: number of images to upload
-const uploadMultiple =(folderName,imagesCount, req, res)=>{
-  if( req.files === undefined ){
-    return;
-  }
-  let upload =  multer({
-    storage: multerS3({
-     s3: s3,
-     bucket: bucket,
-     acl: 'public-read',
-     key: function (req, file, cb) {
-      cb( null, folderName + "/" + path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + path.extname( file.originalname ) )
-     }
-    }),
-      limits:{ fileSize: 2000000 }, // In bytes: 2000000 bytes = 2 MB
-      fileFilter: function( req, file, cb ){
-      checkFileType( file, cb );
-      }
-    }).array( 'reviewImages', imagesCount);
+const uploadMultiple = (folderName, req, res)=>{
+  return new Promise((res, rej)=> {
+    debugger;
+    if( req.files === undefined ){
+      return;
+    }
 
-    upload( req, res, (error) => {
-      if(error){
-        res.json( { error: error } );
-       } else {
-          let fileArray = req.files,fileLocation;
-          const reviewImagesArray = [];
-          for ( let i = 0; i < fileArray.length; i++ ) {
-            fileLocation = fileArray[i].location;
-            reviewImagesArray.push( fileLocation )
+   
+
+    const values = Object.values(req.files);
+    for ( let i = 0; i < values.length; i++ ) {
+      const file = values[i];
+      const params = {
+        Bucket: bucket,
+        Key: folderName + "/" + Date.now() + "-" + file.name ,
+        Body: file.data,
+      };
+
+      s3.upload(params, (err, data)=>{
+        if(err){
+          rej(err)
+        }else{
+          if(i === values.length - 1){
+            res(data)
           }
-          res.json( {
-            filesArray: fileArray,
-            locationArray: reviewImagesArray
-           } );
-       }
-    });
+        }
+      });
+    }
+
+  
+    // const file = Object.values(req.files)[0];
+    
+    
+  })
+  
+  // return await s3.upload(params, function (err, data) {
+  //   debugger;
+  //   if (err) {
+  //   console.log('error in callback');
+  //   console.log(err);
+  //   return err
+  //   }else{
+  //     console.log('success');
+  //     console.log(data);
+  //     return getImages(review._id);
+  // }
+  // });
+
+  // let values = Object.values(req.files);
+  // for ( let i = 0; i < values.length; i++ ) {
+  //   const result = await uploadToS3(folderName, values[i]);
+  //   debugger
+  // }
 }
 
-
-const getImages = (objId)=>{
-  let params = { Bucket: bucket, prefix: objId };
-  s3.listObjects(params, function(err, data) {
-    if (err) return console.error(err);  
-    return data.Contents
+function getImages(prefix) {
+   return new Promise((res, rej)=>{
+    debugger
+   const params = {
+     Bucket: bucket,
+     Prefix: prefix,
+    };
+    return s3.listObjects(params, function(err, data) {
+      debugger
+      if(err){
+        rej(err);
+      }else{
+        const imagesURLs = [];
+        for (let i = 0; i < data.Contents.length; i++) {
+          const image = data.Contents[i]['Key'];
+          const params = {Bucket: bucket, Key: image};
+          const url = s3.getSignedUrl('getObject', params);
+          imagesURLs.push(url)
+        }
+        debugger;
+        res(imagesURLs);
+      }
   });
+   })
+   
 }
-module.exports = Review = mongoose.model('reviews', ReviewSchema);
+
+module.exports = {
+  getImages,
+  uploadMultiple
+}
