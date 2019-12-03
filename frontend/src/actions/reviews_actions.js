@@ -1,4 +1,5 @@
 import * as ReviewsUtil from '../util/reviews_api_util';
+import { fetchBusiness } from "./business_actions";
 
 export const RECEIVE_ALL_Reviews = "RECEIVE_ALL_Reviews";
 export const RECEIVE_Review = "RECEIVE_Review";
@@ -36,3 +37,9 @@ export const deleteReview = (reviewId) => dispatch => (
     .then(reviewId => dispatch(removeReview(reviewId)),
     err => dispatch(receiveErrors(err.response.data)))
 );
+
+// export const deleteReview = (reviewId, businessId) => dispatch => {
+//   return ReviewsUtil.deleteReview(reviewId).then(() => {
+//     return dispatch(fetchBusiness(businessId));
+//   });
+// };

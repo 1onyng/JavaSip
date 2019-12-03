@@ -2,21 +2,25 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BusinessShowItem from "./business_show_item";
-import NavBar from "../nav/navbar";
+import SearchNav from "../nav/search_nav";
 
 class BusinessShow extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = { loading: true };
   }
 
   componentDidMount() {
-    this.props.fetchBusiness(this.props.businessId);
-    this.props.fetchUsers();
+    this.props.fetchUsers()
+      .then(() => this.props.fetchBusiness(this.props.businessId))
+        .then(() => this.setState({loading: false}));
   }
 
   render() {
     const { business, reviews, businessId, currentUser, users, removeReview } = this.props;
-
+    if (this.state.loading) return null;
+  
     let reviewLink;
     let alreadySubmitted = false;
 
@@ -42,6 +46,7 @@ class BusinessShow extends React.Component {
           user={users[review.author]}
           currentUser={currentUser}
           removeReview={removeReview}
+          // businessId = {businessId}
         />
       );
     });
@@ -58,7 +63,9 @@ class BusinessShow extends React.Component {
 
       return (
         <>
-        <NavBar/>
+          <div className="search-nav">
+            <SearchNav />
+          </div>
           <div className="business-header">
             <div className="bh-info-container">
               <div className="bh-info">
@@ -66,11 +73,10 @@ class BusinessShow extends React.Component {
                   <h1>{business.business_name}</h1>
                   <div className="bh-star-holder">
                     <div
-                      // insert business rating
+                    // insert business rating
                     ></div>
                     {/* <p>{`${business.reviews.length} reviews`}</p> */}
                   </div>
-
                 </div>
                 <div className="bh-info-review">{reviewLink}</div>
               </div>

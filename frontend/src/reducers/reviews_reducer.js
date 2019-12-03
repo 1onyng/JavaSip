@@ -11,7 +11,7 @@ const ReviewsReducer = (state = {}, action) => {
       return Object.assign({}, state, {[action.payload.review.id]: action.payload.review});
     case REMOVE_REVIEW:
       newState = Object.assign({}, state);
-      delete newState[action.reviewId];
+      delete newState[action.reviewId.data.reviewId];
       return newState;
     default:
       return state;
