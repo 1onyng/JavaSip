@@ -10,11 +10,14 @@ class MainPage extends React.Component {
     };
   }
 
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //   let location = this.state.location; 
-    
-  // }
+  componentDidMount() {
+    this.props.fetchBusinesses("Oakland");
+  }
+
+  getBusinesses() {
+    const businessList = this.props.businesses.map((business, i) => <div className="main-business" key={i}><Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link></div>);
+    return businessList;
+  }
 
   update(field) {
     return e => this.setState({
@@ -27,15 +30,6 @@ class MainPage extends React.Component {
       <div>
       <div className="main-page">
         <NavBar />
-        {/* <div className="search-bar">
-          <p className="search-bar-how">Coffee Shops Near</p>
-          <input type="text" className="search-input" 
-                             value={this.state.location}
-                             onChange={this.update('location')}
-                             placeholder="Oakland"/>
-                             
-            <Link to={`/search/${this.state.location}`}><button className="search-bar-submit"><i className="fas fa-search"></i></button></Link>
-        </div> */}
         <SearchBar />
         <footer className="footer-main-page">
           <a href="https://github.com/1onyng">Tony</a>
@@ -45,7 +39,11 @@ class MainPage extends React.Component {
       </div>
         <div className="business-index">
           <p className="index-title-main">JavaSip Oakland</p>
+          <p className="index-description-main">Hot & New Coffee Shops</p>
+          <div className="main-page-business-list">
+            {this.getBusinesses()}
           </div>
+        </div>
       </div>
     );
   }
