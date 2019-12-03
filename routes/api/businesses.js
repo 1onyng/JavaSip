@@ -37,7 +37,13 @@ router.get('/:id', (req, res) => {
     );
 });
 
-router.post('/id/review', (req, res) => {
+router.post('/:id/review', (req, res) => {
+  console.log("====>>>> here")
+  console.log(req.body)
+  console.log("====>>>> end")
+  // console.log(req.body.images[0])
+  console.log("====>>>> end")
+  
   const token = req.headers.authorization;
   const user = jwt_decode(token);
 
