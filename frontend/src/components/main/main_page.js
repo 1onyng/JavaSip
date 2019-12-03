@@ -2,6 +2,8 @@ import React from 'react';
 import NavBar from '../nav/navbar_container';
 import { Link } from 'react-router-dom';
 import SearchBar from '../nav/searchbar';
+
+
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,7 @@ class MainPage extends React.Component {
   }
 
   getBusinesses() {
-    const businessList = this.props.businesses.map((business, i) => <div className="main-business" key={i}><Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link></div>);
+    const businessList = this.props.businesses.map((business, i) => <div className="main-business" key={i}><img src={business.imgURL}/><Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link></div>);
     return businessList;
   }
 
