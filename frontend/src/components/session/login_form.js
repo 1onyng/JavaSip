@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
       <div className="login-form-container">
         <div className="signup-header">
           <div className="signup-logo">
-            <Link to={'/'} ><img className="logo" src="stylesheets/images/coffeelogo4.png" /></Link>
+            <Link to={'/'} ><img className="logo" src="stylesheets/images/javasiplogo.png" /></Link>
           </div>
         </div>
         <div className="signup-page-contents">
@@ -69,12 +69,14 @@ class LoginForm extends React.Component {
                 value={this.state.username}
                 onChange={this.update('username')}
                 placeholder="Username"
+                className="session-input"
               />
             <br/>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
+                className="session-input"
               />
             <br/>
             <button className="signup-btn">Log In</button>

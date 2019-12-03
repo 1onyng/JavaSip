@@ -1,11 +1,13 @@
-import {RECEIVE_BUSINESS} from '../actions/business_actions';
+import { RECEIVE_BUSINESS, RECEIVE_BUSINESSES } from '../actions/business_actions';
 
 const businessesReducer = (oldState = {}, action) => {
   
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_BUSINESS:
-      return Object.assign({}, oldState, {[action.business._id]: action.business});
+      return Object.assign({}, oldState, { [action.payload.business._id]: action.payload.business });
+    case RECEIVE_BUSINESSES: 
+      return action.businesses.data;
     default:
       return oldState;
   }

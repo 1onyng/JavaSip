@@ -2,7 +2,10 @@ import React from 'react';
 import RatingStar from '../rating/star_rating_container';
 import axios from 'axios';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 21b9204a1971c5b1c772ce30a850e853f9d2e337
 class ReviewForm extends React.Component{
   constructor(props){
     super(props);

@@ -6,8 +6,16 @@ const jwt_decode = require('jwt-decode');
 const Business = require('../../models/Business');
 const validateBusinessInput = require('../../validation/business');
 
+
 router.get('/', (req, res) => {
   Business.find()
+    .sort({ date: -1 })
+    .then(businesses => res.json(businesses))
+    .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
+});
+
+router.get('/search/:searchLocation', (req, res) => {
+  Business.find({ city: req.params.searchLocation })
     .sort({ date: -1 })
     .then(businesses => res.json(businesses))
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
@@ -38,12 +46,6 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/:id/review', (req, res) => {
-  console.log("====>>>> here")
-  console.log(req.body)
-  console.log("====>>>> end")
-  // console.log(req.body.images[0])
-  console.log("====>>>> end")
-  
   const token = req.headers.authorization;
   const user = jwt_decode(token);
 
