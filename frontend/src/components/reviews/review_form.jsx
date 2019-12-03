@@ -1,6 +1,7 @@
 import React from 'react';
 import RatingStar from '../rating/star_rating_container';
 import axios from 'axios';
+import SearchNav from '../nav/search_nav_container';
 
 class ReviewForm extends React.Component{
   constructor(props){
@@ -88,7 +89,12 @@ class ReviewForm extends React.Component{
     let placeHolder = 'Your review helps others learn about great local businesses.\n\n Please don’t review this business if you received a freebie for writing this review, or if you’re connected in any way to the owner or employees.'
     return(
     
+      <div>
+        <div className="search-nav">
+          <SearchNav />
+        </div>
 
+      
       <form encType="multipart/form-data" className="review-form" onSubmit={this.handleSubmit}>
         <ul className="form-wrapper">
         <h3 className="form-header">Business Name</h3>
@@ -112,7 +118,7 @@ class ReviewForm extends React.Component{
         </li>
         </ul>
       </form>
-
+      </div>
     );
   }
 }
