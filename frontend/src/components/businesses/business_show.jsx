@@ -81,7 +81,7 @@ class BusinessShow extends React.Component {
                     <div
                       // insert business rating
                     ></div>
-                    <p>{`${business.reviews.length} reviews`}</p>
+                    {/* <p>{`${business.reviews.length} reviews`}</p> */}
                   </div>
 
                 </div>
@@ -109,12 +109,12 @@ class BusinessShow extends React.Component {
                         {business.phone}
                       </p>
                     </div>
-                    <div className="map-info-website">
+                    {/* <div className="map-info-website">
                       <p>
                         <FontAwesomeIcon icon="window-restore" />
-                        {/* insert business website */}
+                        insert business website
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 {/* <div className="bh-images-list">{businessImg}</div> */}
