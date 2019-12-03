@@ -4,7 +4,6 @@ import { fetchBusinesses } from '../../actions/business_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
-  
   const businesses = ownProps.businesses;
   return {
     businesses,

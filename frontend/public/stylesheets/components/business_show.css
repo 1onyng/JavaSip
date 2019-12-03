@@ -60,7 +60,7 @@
 }
 
 .bh-info-review a{
-    background-color: brown;
+    background-color: #896044;
     text-decoration: none;
     border: 1px solid black;
     font-size: 16px;
@@ -111,12 +111,12 @@
     font-size: 16px;
 }
 
-.businessMap{
+/* .businessMap{
     width: 286px;
     height: 135px;
     background: transparent;
     border: 1px solid #e6e6e6;
-}
+} */
 
 .map-info{
     margin: 10px;
@@ -197,7 +197,7 @@
 }
 
 .ri-userinfo svg{
-    background-color: #e1652a;
+    background-color: #896044;
     border-radius: 2px;
     color: white;
     padding: 3px;

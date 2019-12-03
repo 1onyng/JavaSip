@@ -1,2 +1,3 @@
 /node_modules
 /config/keys.js
+/frontend/src/components/businesses/config/map_key.js
