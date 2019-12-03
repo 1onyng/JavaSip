@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import SearchNav from '../nav/search_nav_container';
+import Map from './map_container';
+
 class BusinessSearch extends React.Component {
   constructor(props) {
     super(props)
@@ -13,7 +15,7 @@ class BusinessSearch extends React.Component {
 
   getBusinesses() {
      
-    const businessList = this.props.businesses.map((business, i) => <div className="search-buisness"key={i}>{business.business_name}</div>);
+    const businessList = this.props.businesses.map((business, i) => <div className="search-business" key={i}><Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link></div>);
     return businessList;
   }
 
@@ -24,10 +26,18 @@ class BusinessSearch extends React.Component {
         <div className="search-nav">
           <SearchNav />
         </div>
-        <p className="search-page-title">Browsing {this.props.search} Coffee Shops</p>
+        <div className="title-div">
+          <p className="search-page-title">Browsing {this.props.search} Coffee Shops</p>
+        </div>
+        <p className="search-page-subtitle">All Results</p>
+         <div className="index-contents">
           <div className="search-business-list">
             {this.getBusinesses()}
           </div>
+          <div className="map-div"> 
+            <Map businesses={this.props.businesses} /> 
+          </div>
+        </div> 
         </div>
 
     );
