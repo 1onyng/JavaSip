@@ -14,7 +14,7 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser }) => {
   ////////////////////////////////////
 
   let deleteButton;
-  debugger
+
   if (review.author === currentUser.id) {
     deleteButton = (
       <div className="delete_button">
