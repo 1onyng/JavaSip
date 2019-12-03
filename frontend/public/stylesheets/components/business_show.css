@@ -67,15 +67,11 @@
     font-weight: 700;
     cursor: pointer;
     color: white;
-    // width: 250px;
-    // height: 45px;
     border-radius: 5px;
     padding: 9px 24px 9px 24px;
     border: 0;
     margin: 0;
     margin-bottom: 40px;
-    // margin-right: 50px;
-    // margin-right: 150px;
 }
 
 .bh-info-review svg{
@@ -170,16 +166,11 @@
     transform: scale(1.2);
 }
 
-//////////////////////////
-
 .business-reviews{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    // align-items: center;
     width: 100%;
-    // min-width: 1000px;
-    // margin: 0 auto;
 }
 
 .business-reviews ul{
@@ -203,7 +194,6 @@
     width: 250px;
     height: 60px;
     align-items: center;
-    // margin-right: 100px;
 }
 
 .ri-userinfo svg{
@@ -239,10 +229,10 @@
     flex-direction: column;
     justify-content: center;
     width: 500px;
-
+/* 
     p{
         white-space: pre-wrap;
-    }
+    } */
 }
 
 .review-imgs{
@@ -274,102 +264,4 @@
     border: 0;
     margin: 0;
     margin-bottom: 10px;
-}
-
-/*----rating icons----*/
-
-div[class^="br-big-"]{
-    width: 132px;
-    height: 24px;
-    /* background: image-url('star_output.png'); */
-    background-image:url('../images/star_output.png');
-    margin-right: 7px;
-}
-
-.br-big-0{
-    background-position: 0px 0px !important;
-}
-
-.br-big-1{
-    background-position: 0px -24px !important;
-}
-
-.br-big-1\.5{
-    background-position: 0px -48px !important;
-}
-
-.br-big-2{
-    background-position: 0px -72px !important;
-}
-
-.br-big-2\.5{
-    background-position: 0px -96px !important;
-}
-
-.br-big-3{
-    background-position: 0px -120px !important;
-}
-
-.br-big-3\.5{
-    background-position: 0px -144px !important;
-}
-
-.br-big-4{
-    background-position: 0px -168px !important;
-}
-
-.br-big-4\.5{
-    background-position: 0px -192px !important;
-}
-
-.br-big-5{
-    background-position: 0px -216px !important;
-}
-
-
-div[class^="br-mid-"]{
-    width: 102px;
-    height: 18px;
-    background: image-url('star_output.png');
-    margin-right: 7px;
-}
-
-.br-mid-0{
-    background-position: 0px -240px !important;
-}
-
-.br-mid-1{
-    background-position: 0px -258px !important;
-}
-
-.br-mid-1\.5{
-    background-position: 0px -276px !important;
-}
-
-.br-mid-2{
-    background-position: 0px -294px !important;
-}
-
-.br-mid-2\.5{
-    background-position: 0px -312px !important;
-}
-
-.br-mid-3{
-    background-position: 0px -330px !important;
-}
-
-.br-mid-3\.5{
-    background-position: 0px -348px !important;
-}
-
-.br-mid-4{
-    background-position: 0px -366px !important;
-}
-
-.br-mid-4\.5{
-    background-position: 0px -384px !important;
-}
-
-.br-mid-5{
-    background-position: 0px -402px !important;
 }
