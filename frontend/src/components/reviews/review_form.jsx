@@ -1,11 +1,8 @@
 import React from 'react';
 import RatingStar from '../rating/star_rating_container';
 import axios from 'axios';
+import SearchNav from '../nav/search_nav_container';
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 21b9204a1971c5b1c772ce30a850e853f9d2e337
 class ReviewForm extends React.Component{
   constructor(props){
     super(props);
@@ -16,58 +13,22 @@ class ReviewForm extends React.Component{
     this.starRateValueChange = this.starRateValueChange.bind(this);
     this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this);
   }
+
   handleSubmit(e){
     e.preventDefault();
-    // this.props.submitEvent(this.state);
-    // debugger
-    // console.log("imagefiles:  ", this.state.imageFiles);
-    // const data = {
-    //   rate: this.state.rate,
-    //   comment: this.state.comment,
-    //   images: this.state.imageFiles,
-    //   businessId: '5de559e009a8d8d2bb44bca4'
-    // }
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('rate', this.state.rate);
     formData.append('comment', this.state.comment);
+    formData.append('businessId', this.props.businessId);
 
     let {imageFiles} = this.state;
     if (imageFiles.length > 0) {
       for (let i = 0; i < imageFiles.length; i++) {
-          formData.append('file', imageFiles[i]);
+          formData.append('reviewImage'+i, imageFiles[i],imageFiles[i].name);
       }
     }
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0]+ ', ' + pair[1]); 
-  }
-
-    axios.post("/api/businesses/5de559e009a8d8d2bb44bca4/review", {data: formData}, { 
-      // receive two    parameter endpoint url ,form data
-  })
-
-    // axios({
-    //   method: 'post',
-    //   url: `/api/businesses/5de559e009a8d8d2bb44bca4/review`,
-    //   data: formData,
-    //   headers: {'content-type': `multipart/form-data; boundary=${formData._boundary}` }
-    //   })
-    //   .then(function (response) {
-    //     debugger
-    //       //handle success
-    //       console.log(response);
-    //   })
-    //   .catch(function (response) {
-    //     debugger
-    //       //handle error
-    //       console.log(response);
-    //   });
-
-    // axios.post(`/api/businesses/5de559e009a8d8d2bb44bca4/review`, formData)
-    // .then((res)=> console.log(res))
-    // .catch((err)=> console.log(err))
-
-
+    this.props.submitReview(this.props.businessId, formData)
   }
 
   update(field){
@@ -84,10 +45,9 @@ class ReviewForm extends React.Component{
     let allowedExtension = ['jpeg', 'jpg', 'png'];
     for (let i = 0; i < files.length; i++) {
       if(!allowedExtension.includes(e.target.files[0].name.split('.').pop().toLowerCase())){
-        window.showAlert("only jpeg, jpg and png are allowed.", 'alert-danger');
+        // window.showAlert("only jpeg, jpg and png are allowed.", 'alert-danger');
         return;
       }}
- 
       for (let i = 0; i < files.length; i++){
           let fileReader = new FileReader();
           fileReader.onloadend = () => {
@@ -129,14 +89,19 @@ class ReviewForm extends React.Component{
     let placeHolder = 'Your review helps others learn about great local businesses.\n\n Please don’t review this business if you received a freebie for writing this review, or if you’re connected in any way to the owner or employees.'
     return(
     
+      <div>
+        <div className="search-nav">
+          <SearchNav />
+        </div>
 
-      <form className="review-form" onSubmit={this.handleSubmit}>
+      
+      <form encType="multipart/form-data" className="review-form" onSubmit={this.handleSubmit}>
         <ul className="form-wrapper">
         <h3 className="form-header">Business Name</h3>
         <li className="form-row">
           <div className="inputs-wrapper">
-          <RatingStar onChange={(newRate)=>this.starRateValueChange(newRate)}/>
-            <textarea className="comment-style" rows="10" value={this.state.comment} onChange={this.update('comment')}
+          <RatingStar name="rate" onChange={(newRate)=>this.starRateValueChange(newRate)}/>
+            <textarea name="comment" className="comment-style" rows="10" value={this.state.comment} onChange={this.update('comment')}
                     placeholder={placeHolder}
             ></textarea>
           </div>
@@ -145,7 +110,7 @@ class ReviewForm extends React.Component{
           <h5 className="form-title-2">Attach Photos<span className="subtitle">optional</span></h5>
         </li>
         <li className="form-row">
-          <input type="file" className="form-control-file" id='input_file'
+          <input name="files" type="file" className="form-control-file" id='input_file'
               onChange={this.uploadMultipleFiles} multiple />
         </li>  
         <li className="form-row">
@@ -153,7 +118,7 @@ class ReviewForm extends React.Component{
         </li>
         </ul>
       </form>
-
+      </div>
     );
   }
 }

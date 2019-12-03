@@ -5,6 +5,8 @@ const passport = require('passport');
 const jwt_decode = require('jwt-decode');
 const Business = require('../../models/Business');
 const validateBusinessInput = require('../../validation/business');
+const uploadMultiple = require('../../models/Images').uploadMultiple;
+const getImages = require('../../models/Images').getImages;
 
 
 router.get('/', (req, res) => {
@@ -17,7 +19,12 @@ router.get('/', (req, res) => {
 router.get('/search/:searchLocation', (req, res) => {
   Business.find({ city: req.params.searchLocation })
     .sort({ date: -1 })
-    .then(businesses => res.json(businesses))
+    .then(businesses => {
+      getImages('businesses')
+      .then(imgUrls => res.json({businesses, imgUrls}))
+      
+    
+    })
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
 });
 
@@ -45,8 +52,9 @@ router.get('/:id', (req, res) => {
     );
 });
 
-router.post('/:id/review', (req, res) => {
-  const token = req.headers.authorization;
+
+router.post('/:id/review', (req, res, next) => {
+   const token = req.headers.authorization;
   const user = jwt_decode(token);
 
   if (user) {
@@ -56,15 +64,14 @@ router.post('/:id/review', (req, res) => {
       business: req.body.businessId,
       author: user.id
     })
-
-    newReview.save().then(review => {
-      Business.findOne({_id: req.body.businessId}).then(business => {
-        business.reviews.push(review);
-        business.save().then(business => {
-          res.send({ business: business, review: review });
-        })
-      })
-    })
+      newReview.save().then(review => {
+        uploadMultiple(review._id, req, res)
+        .then(data => { getImages(review.id)
+        .then((imgUrls)=>{ res.send({review, images: imgUrls})});
+        }, (err)=> console.log(object))
+       
+        // res.send({review: review})
+    });
   }
 })
 
