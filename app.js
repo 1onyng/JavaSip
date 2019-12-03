@@ -9,6 +9,8 @@ const businesses = require("./routes/api/businesses");
 const reviews = require("./routes/api/reviews");
 const upload = require("./routes/api/image_upload");
 const passport = require("passport");
+const busboy = require('connect-busboy');
+const busboyBodyParser = require('busboy-body-parser');
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -19,6 +21,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded());
 app.use(passport.initialize());
+app.use(busboy());
+app.use(busboyBodyParser());
 require("./config/passport")(passport);
 
 app.get("/", (req, res) => res.send("Hello World"));
