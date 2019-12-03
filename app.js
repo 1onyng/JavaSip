@@ -7,6 +7,7 @@ const User = require("./models/User");
 const users = require("./routes/api/users");
 const businesses = require("./routes/api/businesses");
 const reviews = require("./routes/api/reviews");
+const upload = require("./routes/api/image_upload");
 const passport = require("passport");
 
 mongoose
@@ -17,7 +18,6 @@ mongoose
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded());
-
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
@@ -25,6 +25,7 @@ app.get("/", (req, res) => res.send("Hello World"));
 app.use("/api/users", users);
 app.use("/api/businesses", businesses);
 app.use("/api/reviews", reviews);
+app.use("/api/images", upload);
 
 const port = process.env.PORT || 4000;
 
