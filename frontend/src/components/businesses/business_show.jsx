@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BusinessShowItem from "./business_show_item";
+import NavBar from "../nav/navbar";
 
 class BusinessShow extends React.Component {
   constructor(props) {
@@ -72,6 +73,7 @@ class BusinessShow extends React.Component {
 
       return (
         <>
+        <NavBar/>
           <div className="business-header">
             <div className="bh-info-container">
               <div className="bh-info">
