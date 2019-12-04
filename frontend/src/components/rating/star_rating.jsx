@@ -109,7 +109,6 @@ export default class StarRating extends React.PureComponent {
   ratingStar(){
     return (
       <ul id="rateContainer" className="stars" data-rate="0">
-        <p>not read only</p>
         <img data-value="1" className="star" src={emptyCup}/>
         <img data-value="2" className="star" src={emptyCup}/>
         <img data-value="3" className="star" src={emptyCup}/>

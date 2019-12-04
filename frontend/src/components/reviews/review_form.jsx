@@ -28,7 +28,8 @@ class ReviewForm extends React.Component{
       }
     }
 
-    this.props.submitReview(this.props.businessId, formData)
+    this.props.submitReview(this.props.businessId, formData);
+    this.props.history.push(`/businesses/${this.props.businessId}`);
   }
 
   update(field){
