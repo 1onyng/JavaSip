@@ -28,12 +28,18 @@ const ReviewSchema = new Schema({
   }
 })
 
-ReviewSchema.statics.getReviewsByBusinessId = function(businessId) {
-  Review.find({ business: businessId })
-      .then(reviews => res.json(reviews))
-      .catch(err =>
-          res.status(404).json({ noReviewsFound: 'No reviews found with that ID' })
-      );
+// ReviewSchema.statics.getReviewsByBusinessId = function(businessId) {
+//   Review.find({ business: businessId })
+//       .then(reviews => res.json(reviews))
+//       .catch(err =>
+//           res.status(404).json({ noReviewsFound: 'No reviews found with that ID' })
+//       );
+// };
+
+ReviewSchema.statics.getReviewsByBusinessId = function (businessId) {
+  return Review.find({ business: businessId })
+    .then(reviews => reviews)
+    .catch(err => err);
 };
 
 ReviewSchema.statics.getReviewsByAuthorId = function (authorId) {
