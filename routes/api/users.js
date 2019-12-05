@@ -7,6 +7,8 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
+const getImages = require('../../models/Images').getImages;
+
 
 // router.get("/", (req, res) => {
 //   User.find()
@@ -18,9 +20,9 @@ const validateLoginInput = require("../../validation/login");
 router.get("/", (req, res) => {
   User.find()
     .then(users => {
-      const usersObj = {};
-      users.forEach(user => usersObj[user._id] = user);
-      res.send(usersObj)
+      const usersObj = {}; users.forEach(user => usersObj[user._id] = user);
+      getImages('profiles')
+      .then(avatars => res.json({usersObj, avatars}))
     })
     .catch(err => 
       res.status(404).json({ nousersfound: "No users found" })

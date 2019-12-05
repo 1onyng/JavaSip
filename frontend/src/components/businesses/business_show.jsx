@@ -38,13 +38,13 @@ class BusinessShow extends React.Component {
           <FontAwesomeIcon icon="star"/>Write a Review</Link>
       );
     }
-
     const reviewsList = reviews.map(review => {
+      let user = Object.values(users).filter(user => user._id === review.author)[0];
       return (
         <BusinessShowItem
           key={review._id}
           review={review}
-          user={users[review.author]}
+          user={user}
           currentUser={currentUser}
           removeReview={removeReview}
           // businessId = {businessId}
