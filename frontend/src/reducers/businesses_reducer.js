@@ -12,7 +12,7 @@ const businessesReducer = (oldState = {}, action) => {
       business.imgURL = img;
       return Object.assign({}, oldState, { [business._id]: business });
     case RECEIVE_BUSINESSES: 
-      let businesses = action.businesses.data.businesses;
+      let businesses = Object.values(action.businesses.data.businessesObj);
       imageURLs = action.businesses.data.imgUrls;
       for (let i = 0; i < businesses.length; i++) {
         let img = imageURLs.filter(item => item.includes(businesses[i]._id))[0];
