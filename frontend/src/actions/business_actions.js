@@ -13,7 +13,7 @@ const receiveBusiness = (payload) => {
 };
 
 export const receiveBusinesses = (businesses) => { 
-  return ({
+  return ({ 
     type: RECEIVE_BUSINESSES,
     businesses,
   })

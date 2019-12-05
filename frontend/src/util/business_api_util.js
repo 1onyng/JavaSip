@@ -6,5 +6,4 @@ export const fetchBusiness = id => {
 
 export const fetchBusinesses = (search) => { 
   return axios.get(`/api/businesses/search/${search}`)
-  
 };
