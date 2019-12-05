@@ -16,14 +16,26 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
 });
 
+// router.get('/search/:searchLocation', (req, res) => {
+//   Business.find({ city: req.params.searchLocation })
+//       .sort({ date: -1 })
+//       .then(businesses => { getImages('businesses')
+//       .then(imgUrls => res.json({businesses, imgUrls}))
+//     })
+//     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
+// });
 
-router.get('/search/:searchLocation', (req, res) => {
-  Business.find({ city: req.params.searchLocation })
-      .sort({ date: -1 })
-      .then(businesses => { getImages('businesses')
-      .then(imgUrls => res.json({businesses, imgUrls}))
-    })
-    .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
+router.get('/search/:searchLocation', async (req, res) => {
+  const businessesObj = {};
+  const businesses = await Business.find({ city: req.params.searchLocation });
+  for (let index = 0; index < businesses.length; index++) {
+    const business = businesses[index].toJSON();
+    const reviews = await Review.getReviewsByBusinessId(business._id);
+
+    business.reviews = reviews;
+    businessesObj[business._id] = business
+  }
+  getImages('businesses').then(imgUrls => res.json({ businessesObj, imgUrls }))
 });
 
 router.get('/user/:user_id', (req, res) => {
@@ -65,6 +77,7 @@ router.post('/:id/review', (req, res, next) => {
       author: user.id
     })
       newReview.save().then(review => {
+
         uploadMultiple(review._id, req, res)
         .then(data => { getImages(review.id)
         .then((imgUrls)=>{ res.send({review, images: imgUrls})});
