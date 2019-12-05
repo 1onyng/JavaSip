@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RatingStar from "../rating/star_rating_container";
 
   const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
   //RETRIVING REVIEW PHOTOS///////////
@@ -34,7 +35,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
               <p className="profile-name">{user.username}</p>
               <p className="profile-small">
                 <FontAwesomeIcon icon="star" />
-                {/* {`${user.reviews_count} reviews`} */}
+                {`${user.reviews.length} reviews`}
               </p>
               <p className="profile-small">
                 <FontAwesomeIcon icon="camera" />
@@ -43,14 +44,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
             </div>
           </div>
           <div className="ri-body">
-            {/* <div className={`br-mid-${review.rate}`}></div> */}
-            <div className="rating" data-rating="1">
-              <i className="star-1">★</i>
-              <i className="star-2">★</i>
-              <i className="star-3">★</i>
-              <i className="star-4">★</i>
-              <i className="star-5">★</i>
-            </div>
+            <RatingStar name="rate" rate={review.rate} readOnly="true"/>
             <p>{review.comment}</p>
             {deleteButton}
             {/* <div className="review-imgs">{reviewImg}</div> */}
