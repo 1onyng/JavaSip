@@ -36,4 +36,11 @@ ReviewSchema.statics.getReviewsByBusinessId = function(businessId) {
       );
 };
 
+ReviewSchema.statics.getReviewsByAuthorId = function (authorId) {
+  return Review.find({ author: authorId })
+    .then(reviews => reviews)
+    .catch(err => err);
+};
+
+
 module.exports = Review = mongoose.model('reviews', ReviewSchema);
