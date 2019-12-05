@@ -16,10 +16,20 @@ class MainPage extends React.Component {
     this.props.fetchBusinesses("Oakland");
   }
 
-  getBusinesses() {
+  getPrice(n) {
+    let price = "";
+    let i;  
+    for (i = 0; i < n; i++) {
+      price += "$";
+    }
+    return <p>{price}</p>
+  }
+
+  getBusinesses() { 
     const businessList = this.props.businesses.map((business, i) => {
     return <div className="main-business" key={i}><img className="main-page-shop-img" src={business.imgURL}/>
     <Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link>
+    
     </div>
     });
     const newBusinesses = businessList.slice(0, 3);
