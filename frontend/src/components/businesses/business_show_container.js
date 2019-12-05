@@ -5,7 +5,6 @@ import BusinessShow from "./business_show";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state, ownProps) => {
-
   const businessId = (ownProps.match.params.businessId);
   const business = state.entities.businesses[businessId]; 
   const currentUser = state.session.user;
