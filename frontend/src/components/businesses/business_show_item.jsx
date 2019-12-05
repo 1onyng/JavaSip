@@ -13,9 +13,7 @@ import RatingStar from "../rating/star_rating_container";
   //   }
   // }
   ////////////////////////////////////
-
     let deleteButton;
-
     if (review.author === currentUser.id) {
       deleteButton = (
         <div className="delete_button">
@@ -30,7 +28,7 @@ import RatingStar from "../rating/star_rating_container";
       <li>
         <div className="review-item">
           <div className="ri-userinfo">
-            {/* <img className="profile-img" src={user.photoUrl} /> */}
+            <img className="profile-img" src={user.imgURL} />
             <div>
               <p className="profile-name">{user.username}</p>
               <p className="profile-small">
