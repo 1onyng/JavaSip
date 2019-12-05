@@ -12,14 +12,36 @@ class BusinessSearch extends React.Component {
     this.props.fetchBusinesses(this.props.search);
   }
 
+  getPrice(n) {
+    let price = "";
+    let i;
+    for (i = 0; i < n; i++) {
+      price += "$";
+    }
+    return <p>{price}</p>
+  }
+  
+  hasWifi(wifi) {
+    return <div>{wifi ? <div className="wifi"><i className="fas fa-wifi"></i><p className="wifi-description">Free Wifi</p></div> : ""}</div>
+  }
+
   getBusinesses() {
-     
+    debugger
     const businessList = this.props.businesses.map((business, i) => (
-    <div className="search-business" key={i}>
+      <div className="search-business" key={i}>
         <img src={business.imgURL} className="business-search-image" />
-        <div className="business-search-info">
-      <Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link>
-          <div className="business-info"><p>{business.city}</p></div>
+        <div className="business-description-div">
+          <div className="business-search-info">
+            <Link to={`/businesses/${business._id}`} className="search-business-name">{business.business_name}</Link>
+            <p className="shop-price">{this.getPrice(business.price)}</p>
+            {this.hasWifi(business.wifi)}
+          </div>
+          <div className="business-search-address">
+            <div className="business-info">
+              <p>{business.phone}</p>
+              <p>{business.city}, {business.state}</p>
+          </div>
+        </div>
         </div>
       </div>));
     return businessList;

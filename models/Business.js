@@ -34,6 +34,10 @@ const BusinessSchema = new Schema({
     type: String,
     required: false
   },
+  wifi: {
+    type: Boolean,
+    default: false
+  },
   long: {
     type: Number,
     required: false

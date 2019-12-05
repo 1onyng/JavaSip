@@ -16,11 +16,11 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));
 });
 
+
 router.get('/search/:searchLocation', (req, res) => {
   Business.find({ city: req.params.searchLocation })
-    .sort({ date: -1 })
-    .then(businesses => {
-      getImages('businesses')
+      .sort({ date: -1 })
+      .then(businesses => { getImages('businesses')
       .then(imgUrls => res.json({businesses, imgUrls}))
     })
     .catch(err => res.status(404).json({ nobusinessesfound: 'No businesses found' }));

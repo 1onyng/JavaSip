@@ -9,24 +9,17 @@ const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 const getImages = require('../../models/Images').getImages;
 
-
-// router.get("/", (req, res) => {
-//   User.find()
-//     .sort({ date: -1 })
-//     .then(users => res.json(users))
-//     .catch(err => res.status(404).json({ nousersfound: "No users found" }));
-// });
-
-router.get("/", (req, res) => {
-  User.find()
-    .then(users => {
-      const usersObj = {}; users.forEach(user => usersObj[user._id] = user);
-      getImages('profiles')
-      .then(avatars => res.json({usersObj, avatars}))
-    })
-    .catch(err => 
-      res.status(404).json({ nousersfound: "No users found" })
-    );
+router.get("/", async (req, res) => {
+  const usersObj = {};
+  const users = await User.find();
+  for (let index = 0; index < users.length; index++) {
+    const user = users[index].toJSON();
+    const reviews = await Review.getReviewsByAuthorId(user._id);
+    
+    user.reviews = reviews;
+    usersObj[user._id] = user
+  }
+  getImages('profiles').then(avatars => res.json({usersObj, avatars}))
 });
 
 router.get(

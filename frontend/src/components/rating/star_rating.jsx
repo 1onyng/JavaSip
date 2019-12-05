@@ -86,23 +86,21 @@ export default class StarRating extends React.PureComponent {
     $('.stars .star').bind('mouseover click mouseout', mouseOverOrClick);
   }
 
-  readOnlyRating(){
+  readOnlyRating() {
     let dimmed = 5 - this.props.rate;
-    let ul = $('ul');
-    ul.addClass('read-only-stars');
+    let activeStar = <img className='star' src={fullCup} />;
+    let emptyStar = <img className='star' src={emptyCup} />;
+    const items = []
     for (let i = 0; i < this.props.rate; i++) {
-      var li = $('<img/>');
-      li.attr("src",{emptyCup});
-      li.appendTo(ul);
+      items.push(activeStar)
     }
-
     for (let i = 0; i < dimmed; i++) {
-      var li = $('<img/>');
-      li.attr("src",{fullCup});
-      li.appendTo(ul);
+      items.push(emptyStar)
     }
     return (
-      ul
+      <ul>
+        {items}
+      </ul>
     )
   }
 

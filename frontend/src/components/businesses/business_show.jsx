@@ -47,7 +47,6 @@ class BusinessShow extends React.Component {
           user={user}
           currentUser={currentUser}
           removeReview={removeReview}
-          // businessId = {businessId}
         />
       );
     });
