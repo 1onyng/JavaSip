@@ -6,6 +6,7 @@ import { fetchBusinesses } from '../../actions/business_actions';
 const mapStateToProps = (state, ownProps) => { 
   const search = (ownProps.match.params.search);
   const businesses = Object.values(state.entities.businesses);
+  debugger;
   return{
     businesses,
     search 
