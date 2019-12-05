@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
-
+const Review = require("../../models/Review")
 // router.get("/", (req, res) => {
 //   User.find()
 //     .sort({ date: -1 })
@@ -15,17 +15,31 @@ const validateLoginInput = require("../../validation/login");
 //     .catch(err => res.status(404).json({ nousersfound: "No users found" }));
 // });
 
-router.get("/", (req, res) => {
-  User.find()
-    .then(users => {
-      const usersObj = {};
-      users.forEach(user => usersObj[user._id] = user);
-      res.send(usersObj)
-    })
-    .catch(err => 
-      res.status(404).json({ nousersfound: "No users found" })
-    );
+// router.get("/", (req, res) => {
+//   User.find()
+//     .then(users => {
+//       const usersObj = {};
+//       users.forEach(user => usersObj[user._id] = user);
+//       res.send(usersObj)
+//     })
+//     .catch(err => 
+//       res.status(404).json({ nousersfound: "No users found" })
+//     );
+// });
+
+router.get("/", async (req, res) => {
+  const usersObj = {};
+  const users = await User.find();
+  for (let index = 0; index < users.length; index++) {
+    const user = users[index].toJSON();
+    const reviews = await Review.getReviewsByAuthorId(user._id);
+    user.reviews = reviews;
+    usersObj[user._id] = user
+  }
+  res.send(usersObj)
 });
+
+
 
 router.get(
   "/current",
