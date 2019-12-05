@@ -26,6 +26,24 @@
   margin-bottom: 10px; 
 }
 
+.business-description-div {
+  display: flex; 
+  width: 420; 
+  justify-content: space-between;
+}
+
+.search-business-name {
+  color: #0073bb;
+  font-family: sans-serif;
+  font-weight: bold; 
+  font-size: 17px; 
+}
+
+.search-business-name:hover {
+  transition: .75s ease;
+  text-decoration: underline; 
+}
+
 .search-nav-header {
   display: flex; 
   justify-content: center; 
@@ -91,13 +109,27 @@
 }
 .search-business-list {
   padding-top: 30px; 
-  width: 600px; 
-  margin-right: 40px; 
+  width: 700px; 
+  margin-right: 0px 40px 0px 40px; 
 }
 
 .business-search-info {
+  width: 194px;
+  padding-top: 10px; 
+  margin-left: 16px;  
   display: flex;
   flex-direction: column; 
+}
+
+.business-search-address {
+  display: flex; 
+  flex-direction: column; 
+  margin-top: 6px; 
+  line-height: 20px; 
+  font: sans-serif; 
+  font-size: 15px; 
+  width: 210px; 
+  text-align: right; 
 }
 
 .business-info {
@@ -107,11 +139,29 @@
   font-size: 12px; 
 }
 
+.wifi {
+  color: blue; 
+  display: flex; 
+  font-size: 14px; 
+}
+
+.wifi-description {
+  color: black; 
+  margin-left: 10px; 
+  font-family: sans-serif; 
+}
+
+.shop-price {
+  font-size: 14px; 
+  margin: 8px 0px; 
+  font-family: sans-serif; 
+}
+
 .search-business {
   display: flex; 
   height: 250px; 
-  width: 600px; 
-  margin-left: 80px; 
+  width: 700px; 
+  margin: 30px 0px 30px 80px; 
   border-bottom: 1px solid lightgray; 
 }
 
@@ -129,8 +179,9 @@
 }
 
 .business-search-image {
-  width: 280px; 
-  height: 225px;
+  width: 230px; 
+  height: 210px;
+  border-radius: 5px; 
 }
 
 .map-div {
