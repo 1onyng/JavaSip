@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   const businessId = (ownProps.match.params.businessId);
   const business = state.entities.businesses[businessId]; 
   const currentUser = state.session.user;
-  const reviews = Object.keys(state.entities.reviews).map(id => state.entities.reviews[id]);
+  const reviews = Object.keys(state.entities.reviews).reverse().map(id => state.entities.reviews[id]);
   const users = state.entities.users;
 
   return {
