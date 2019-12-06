@@ -13,6 +13,7 @@ const receiveBusiness = (payload) => {
 };
 
 export const receiveBusinesses = (businesses) => { 
+  debugger;
   return ({ 
     type: RECEIVE_BUSINESSES,
     businesses,
