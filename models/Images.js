@@ -26,7 +26,6 @@ async function uploadToS3(folderName, file) {
   
 
   // return await s3.createBucket(params, async function (err, data) {
-  //   debugger;
   //   if(err){
   //     console.log(err)
   //     return err
@@ -35,7 +34,6 @@ async function uploadToS3(folderName, file) {
   //     return data
   //   }
     return await s3.upload(params, function (err, data) {
-      // debugger;
       if (err) {
       console.log('error in callback');
       console.log(err);
@@ -62,7 +60,6 @@ function checkFileType( file, cb ){
 
 const uploadMultiple = (folderName, req, res)=>{
   return new Promise((res, rej)=> {
-    // debugger;
     if( req.files === undefined ){
       return;
     }
@@ -96,7 +93,6 @@ const uploadMultiple = (folderName, req, res)=>{
   })
   
   // return await s3.upload(params, function (err, data) {
-  //   debugger;
   //   if (err) {
   //   console.log('error in callback');
   //   console.log(err);
@@ -111,19 +107,16 @@ const uploadMultiple = (folderName, req, res)=>{
   // let values = Object.values(req.files);
   // for ( let i = 0; i < values.length; i++ ) {
   //   const result = await uploadToS3(folderName, values[i]);
-  //   debugger
   // }
 }
 
 function getImages(prefix) {
    return new Promise((res, rej)=>{
-    // debugger
    const params = {
      Bucket: bucket,
      Prefix: prefix,
     };
     return s3.listObjects(params, function(err, data) {
-      // debugger
       if(err){
         rej(err);
       }else{
@@ -134,7 +127,6 @@ function getImages(prefix) {
           const url = s3.getSignedUrl('getObject', params);
           imagesURLs.push(url)
         }
-        // debugger;
         res(imagesURLs);
       }
   });
