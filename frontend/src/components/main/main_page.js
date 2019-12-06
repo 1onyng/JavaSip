@@ -35,7 +35,6 @@ class MainPage extends React.Component {
   }
 
   getBusinesses() { 
-    debugger; 
     const businessList = this.props.businesses.map((business, i) => {
     return <div className="main-business" key={i}><img className="main-page-shop-img" src={business.imgURL}/>
     <Link to={`/businesses/${business._id}`} className="main-business-name">{business.business_name}</Link>
