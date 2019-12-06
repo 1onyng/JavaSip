@@ -42,7 +42,9 @@ import RatingStar from "../rating/star_rating_container";
             </div>
           </div>
           <div className="ri-body">
-            <RatingStar name="rate" rate={review.rate} readOnly="true"/>
+            <div className="user-rate">
+              <RatingStar name="rate" rate={review.rate} readOnly="true" />
+            </div>
             <p>{review.comment}</p>
             {deleteButton}
             {/* <div className="review-imgs">{reviewImg}</div> */}
