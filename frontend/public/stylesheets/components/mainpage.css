@@ -116,13 +116,31 @@
   margin-right: 0px; 
 }
 
+.avg-rate-main {
+  margin: 8px 0px 8px 8px;
+}
+
 .main-business-name {
   color: #0073bb;
   font-family: sans-serif;
   font-weight: bold; 
-  font-size: 17px;
-  margin: 8px 12px; 
-  padding-top: 10px;  
+  font-size: 18px;
+  margin: 8px 0px 8px 8px; 
+  
+}
+
+.has-review-count-main {
+  padding: 14px 0px 0px 157px;  
+  font-family: sans-serif;
+  font-size: 14px;
+  color: gray; 
+}
+
+.no-review-count-main {
+  padding: 8px 0px 0px 8px;  
+  font-family: sans-serif;
+  font-size: 14px;
+  color: gray; 
 }
 
 .main-page-shop-img {
@@ -130,4 +148,5 @@
   object-position: bottom;
   height: 180px;
   width: 298px; 
+  margin-bottom: 8px; 
 }
