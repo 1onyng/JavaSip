@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import SearchNav from '../nav/search_nav_container';
 import Map from './map_container';
+import RatingStar from "../rating/star_rating_container";
 
 class BusinessSearch extends React.Component {
   constructor(props) {
@@ -25,6 +26,15 @@ class BusinessSearch extends React.Component {
     return <div>{wifi ? <div className="wifi"><i className="fas fa-wifi"></i><p className="wifi-description">Free Wifi</p></div> : ""}</div>
   }
 
+  getReviewRate(reviews) {
+    let sum = 0; 
+    reviews.forEach(review => {
+      sum += review.rate
+    })
+    let avg = Math.floor(sum / reviews.length);
+    return reviews.length === 0 ? <p className="no-review-count">0 reviews</p> : <div className="avg-rate-search"><RatingStar name="rate" rate={avg} readOnly="true" /><p className="has-review-count">{reviews.length} reviews</p></div>; 
+  }
+
   getBusinesses() {
     const businessList = this.props.businesses.map((business, i) => (
       <div className="search-business" key={i}>
@@ -33,6 +43,7 @@ class BusinessSearch extends React.Component {
           <div className="business-search-info">
             <Link to={`/businesses/${business._id}`} className="search-business-name">{business.business_name}</Link>
             <p className="shop-price">{this.getPrice(business.price)}</p>
+            {this.getReviewRate(business.reviews)}
             {this.hasWifi(business.wifi)}
           </div>
           <div className="business-search-address">
