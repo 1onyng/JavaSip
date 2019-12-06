@@ -2,6 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 import emptyCup from './coffee-cup-empty.svg'; 
 import fullCup from './coffee-cup-full.svg'; 
+const uuidv1 = require('uuid/v1');
+
 
 export default class StarRating extends React.PureComponent {
   constructor(props) {
@@ -15,17 +17,17 @@ export default class StarRating extends React.PureComponent {
 
   componentDidMount(){
     const getInfoText = (onStar)=>{
-      if(onStar == 0 ){
+      if(onStar === 0 ){
         return "select your rating"}
-      if(onStar == 1 ){
+      if(onStar === 1 ){
         return "Eek! Methinks not."}
-      if(onStar == 2 ){
+      if(onStar === 2 ){
         return "Meh. I've experienced better.";}
-      if(onStar == 3 ){
+      if(onStar === 3 ){
         return "A-OK.";}
-      if(onStar == 4 ){
+      if(onStar === 4 ){
         return "Yay! I'm a fan.";}
-      if(onStar == 5 ){
+      if(onStar === 5 ){
         return "Woohoo! As good as it gets!";}
     }
 
@@ -92,10 +94,10 @@ export default class StarRating extends React.PureComponent {
     let emptyStar = <img className='star' src={emptyCup} />;
     const items = []
     for (let i = 0; i < this.props.rate; i++) {
-      items.push(activeStar)
+      items.push(<img key={uuidv1()} className='star' src={fullCup} />)
     }
     for (let i = 0; i < dimmed; i++) {
-      items.push(emptyStar)
+      items.push(<img key={uuidv1()} className='star' src={emptyCup} />)
     }
     return (
       <ul>

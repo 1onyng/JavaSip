@@ -115,3 +115,11 @@
 .redirect-login-link:hover {
   border-bottom: solid 1px blue; 
 }
+
+.demo-btn{
+  margin-top: 0px;
+    padding-top: 0px;
+    color: #6F4E37;
+    background: white;
+    border: 1px solid #6F4E37;
+}
