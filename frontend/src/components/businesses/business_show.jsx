@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BusinessShowItem from "./business_show_item";
-import SearchNav from "../nav/search_nav";
+import SearchNav from "../nav/search_nav_container";
 import Map from './business_map_show_container';
 
 class BusinessShow extends React.Component {
