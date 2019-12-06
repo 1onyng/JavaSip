@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BusinessShowItem from "./business_show_item";
 import SearchNav from "../nav/search_nav_container";
 import Map from './business_map_show_container';
+import RatingStar from "../rating/star_rating_container";
 
 class BusinessShow extends React.Component {
   constructor(props) {
@@ -18,10 +19,19 @@ class BusinessShow extends React.Component {
         .then(() => this.setState({loading: false}));
   }
 
+  getReviewRate(reviews) {
+    let sum = 0; 
+    reviews.forEach(review => {
+      sum += review.rate
+    })
+    let avg = Math.floor(sum / reviews.length);
+    return reviews.length === 0 ? <p className="no-review-count">0 reviews</p> : <RatingStar name="rate" rate={avg} readOnly="true" />
+  }
+
   render() {
     const { business, reviews, businessId, currentUser, users, removeReview } = this.props;
     if (this.state.loading) return null;
-  
+
     let reviewLink;
     let alreadySubmitted = false;
 
@@ -72,10 +82,8 @@ class BusinessShow extends React.Component {
                 <div className="bh-info-info">
                   <h1>{business.business_name}</h1>
                   <div className="bh-star-holder">
-                    <div
-                    // insert business rating
-                    ></div>
-                    {/* <p>{`${business.reviews.length} reviews`}</p> */}
+                    {this.getReviewRate(reviews)}
+                    <p>{`${reviews.length} reviews`}</p>
                   </div>
                 </div>
                 <div className="bh-info-review">{reviewLink}</div>
