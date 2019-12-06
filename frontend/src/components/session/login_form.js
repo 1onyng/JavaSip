@@ -12,6 +12,7 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
 
@@ -29,13 +30,52 @@ class LoginForm extends React.Component {
     });
   }
 
+  demoEffect(demoUser) {
+    const that = this;
+    let index = 0;
+    const demoIntervalId = setInterval(() => {
+      if (index < demoUser.username.length) {
+        that.setState({
+          username: this.state.username + demoUser.username[index]
+        })
+      }
+      if (index < demoUser.password.length) {
+        that.setState({
+          password: this.state.password + demoUser.password[index]
+        })
+      }
+      index++;
+      if (index > demoUser.password.length && index > demoUser.username.length) {
+        clearInterval(demoIntervalId);
+        if (this.props.formSubmit === "Log in") {
+          this.props.action(demoUser);
+        } else {
+          this.props.login(demoUser);
+        }
+      }
+    }, 200)
+  }
+
+  handleDemoSubmit(e) {
+    e.preventDefault();
+    const demoUser = {username: "guest", password: "password"};
+    this.demoEffect(demoUser);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-
-    let user = {
-      username: this.state.username,
-      password: this.state.password
-    };
+    let user;
+    if(e.currentTarget.id == "btnSignup"){
+      user = {
+        username: this.state.username,
+        password: this.state.password
+      };
+    }else if(e.currentTarget.id == "btnDemoLogin"){
+      user = {
+        username: "guest",
+        password: "password"
+      };
+    }
     this.props.login(user)
   }
 
@@ -60,7 +100,7 @@ class LoginForm extends React.Component {
           </div>
         </div>
         <div className="signup-page-contents">
-        <form onSubmit={this.handleSubmit} className="signup-form">
+        <form className="signup-form">
           <div className="login-form">
             <p className="signup-description">Sign Up for JavaSip</p>
             <p className="signup-tagline"> Welcome Back</p>
@@ -79,7 +119,8 @@ class LoginForm extends React.Component {
                 className="session-input"
               />
             <br/>
-            <button className="signup-btn">Log In</button>
+            <button onClick={this.handleSubmit}  id="btnSignup" className="signup-btn">Log In</button>
+            <button onClick={this.handleDemoSubmit}  id="btnDemoLogin" className="signup-btn demo-btn">Demo User</button>
           </div>
             <div className="redirect-login">
               <p className="redirect-description">New to JavaSip?</p>
