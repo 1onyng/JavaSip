@@ -4,14 +4,14 @@ import RatingStar from "../rating/star_rating_container";
 
   const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
   //RETRIVING REVIEW PHOTOS///////////
-  // let reviewImg;
-  // if (review.photoUrls) {
-  //   if (review.photoUrls.length !== 0) {
-  //     reviewImg = review.photoUrls.map((photo, idx) => {
-  //       return <img key={idx} src={photo} />;
-  //     });
-  //   }
-  // }
+  let reviewImg;
+  if (review.photos) {
+    if (review.photos.length !== 0) {
+      reviewImg = review.photos.map((photo, idx) => {
+        return <img key={idx} src={photo} />;
+      });
+    }
+  }
   ////////////////////////////////////
     let deleteButton;
     if (review.author === currentUser.id) {
@@ -47,7 +47,7 @@ import RatingStar from "../rating/star_rating_container";
             </div>
             <p>{review.comment}</p>
             {deleteButton}
-            {/* <div className="review-imgs">{reviewImg}</div> */}
+            <div className="review-imgs">{reviewImg}</div>
           </div>
         </div>
       </li>
