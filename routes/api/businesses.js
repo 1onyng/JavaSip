@@ -83,7 +83,6 @@ router.post('/:id/review', (req, res, next) => {
         .then(data => { 
           getImages(review.id)
           .then((imgUrls)=>{ 
-            debugger
             review.photos = imgUrls;
             review.save();
             res.send({review, images: imgUrls})});

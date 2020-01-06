@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RatingStar from "../rating/star_rating_container";
 
 const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
-  // debugger
   let reviewImg;
   if (review.photos) {
     if (review.photos.length !== 0) {
