@@ -1,3 +1,7 @@
+.business-header {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .business-header{
     display: flex;
     width: 100%;
@@ -171,13 +175,24 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .business-reviews ul{
-    width: 74%;
+    /* width: 74%; */
     padding: 0;
     margin: 0;
     list-style-type: none;
+}
+
+.review-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-comment{
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .review-item{
@@ -229,10 +244,6 @@
     flex-direction: column;
     justify-content: center;
     width: 500px;
-/* 
-    p{
-        white-space: pre-wrap;
-    } */
 }
 
 .review-imgs{
@@ -258,14 +269,13 @@
     font-size: 18px;
     font-weight: 700;
     cursor: pointer;
-    color: black;
+    color: #896044;;
     padding: 0;
     border-radius: 5px;
     border: 0;
     margin: 0;
-    margin-bottom: 10px;
 }
 
-/* .user-rate{
-    transform: scale(0.75);
-} */
+.user-rate{
+    display: flex;
+}
