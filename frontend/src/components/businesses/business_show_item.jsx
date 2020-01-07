@@ -46,11 +46,13 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
           </div>
         </div>
         <div className="ri-body">
-          <div className="user-rate">
-            <RatingStar name="rate" rate={review.rate} readOnly="true" />
+          <div className="review-header">
+            <div className="user-rate">
+              <RatingStar name="rate" rate={review.rate} readOnly="true" />
+            </div>
+            {deleteButton}
           </div>
-          <p>{review.comment}</p>
-          {deleteButton}
+          <p class="review-comment">{review.comment}</p>
           <div className="review-imgs">{reviewImg}</div>
         </div>
       </div>
