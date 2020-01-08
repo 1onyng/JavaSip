@@ -279,3 +279,7 @@
 .user-rate{
     display: flex;
 }
+
+.comment-star{
+    width: 25px;
+}

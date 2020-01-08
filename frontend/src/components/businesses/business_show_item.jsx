@@ -52,7 +52,7 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
             </div>
             {deleteButton}
           </div>
-          <p class="review-comment">{review.comment}</p>
+          <p className="review-comment">{review.comment}</p>
           <div className="review-imgs">{reviewImg}</div>
         </div>
       </div>
