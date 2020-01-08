@@ -30,7 +30,7 @@ class BusinessShow extends React.Component {
 
   render() {
     const { business, reviews, businessId, currentUser, users, removeReview } = this.props;
-    if (this.state.loading) return null;
+    // if (this.state.loading) return null;
 
     let reviewLink;
     let alreadySubmitted = false;
@@ -93,8 +93,8 @@ class BusinessShow extends React.Component {
             <div className="bh-images-container">
               <div className="bh-images">
                 <div className="map-container">
-                  <div className="businessMap">    
-                    <Map business={business}/>
+                  <div className="businessMap">
+                    <Map business={business} />
                   </div>
                   <div className="map-info">
                     <div className="map-info-address">
@@ -110,15 +110,11 @@ class BusinessShow extends React.Component {
                         {business.phone}
                       </p>
                     </div>
-                    {/* <div className="map-info-website">
-                      <p>
-                        <FontAwesomeIcon icon="window-restore" />
-                        insert business website
-                      </p>
-                    </div> */}
                   </div>
                 </div>
-                <div className="bh-images-list"><img src={business.imgURL}/></div>
+                <div className="bh-images-list">
+                  <img src={business.imgURL} />
+                </div>
               </div>
             </div>
           </div>
@@ -130,9 +126,7 @@ class BusinessShow extends React.Component {
       );
     }
     else {
-      return (
-        <p>Loading...</p>
-      );
+      return <div class="loader"></div>;
     }
   }
 
