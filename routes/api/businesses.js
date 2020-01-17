@@ -48,6 +48,7 @@ router.get('/user/:user_id', (req, res) => {
     );
 });
 
+// get buisiness details
 router.get('/:id', (req, res) => {
   Business.findById(req.params.id)
     .then(business => Review.find({ business: business.id })
@@ -64,7 +65,6 @@ router.get('/:id', (req, res) => {
       res.status(404).json({ nobusinessfound: 'No business found with that ID' })
     );
 });
-
 
 router.post('/:id/review', (req, res, next) => {
    const token = req.headers.authorization;
