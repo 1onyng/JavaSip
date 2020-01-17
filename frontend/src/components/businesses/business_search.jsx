@@ -36,6 +36,7 @@ class BusinessSearch extends React.Component {
   }
 
   getBusinesses() {
+    debugger;
     const businessList = this.props.businesses.map((business, i) => (
       <div className="search-business" key={i}>
         <img src={business.imgURL} className="business-search-image" />
