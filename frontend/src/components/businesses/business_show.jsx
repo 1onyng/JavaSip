@@ -9,7 +9,6 @@ import RatingStar from "../rating/star_rating_container";
 class BusinessShow extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = { loading: true };
   }
 
@@ -26,6 +25,14 @@ class BusinessShow extends React.Component {
     })
     let avg = Math.floor(sum / reviews.length);
     return reviews.length === 0 ? <p className="no-review-count">0 reviews</p> : <RatingStar name="rate" rate={avg} readOnly="true" />
+  }
+
+  displayBusinessImages = ()=>{
+    let imgList;
+    if(this.props.business.imgURL){
+      imgList = this.props.business.imgURL.map((img, idx)=> <img key={idx} src={img}/>);
+    }
+    return imgList;
   }
 
   render() {
@@ -113,7 +120,8 @@ class BusinessShow extends React.Component {
                   </div>
                 </div>
                 <div className="bh-images-list">
-                  <img src={business.imgURL} />
+                  {/* <img src={business.imgURL} /> */}
+                  {this.displayBusinessImages()}
                 </div>
               </div>
             </div>
@@ -126,7 +134,7 @@ class BusinessShow extends React.Component {
       );
     }
     else {
-      return <div class="loader"></div>;
+      return <div className="loader"></div>;
     }
   }
 
