@@ -1,43 +1,57 @@
-# Background and Overview
+# [JavaSip](http://java-sip.herokuapp.com/#/)
 
-JavaSip is a yelp clone inspired by our love for finding great tasting coffee. Users will be able to search for nearyby coffee shops by any location and submit reviews for them. 
+## Technologies
 
-# Functionality and MVP
+* MongoDB
+* Express 
+* React
+* NodeJS
 
-User auth: Sign up and log in
-Business page: List descriptions of coffee shops, pictures, and 5 star rating scale 
-Reviews/ratings: Logged in users can post reviews, view business reviews, and edit their own reviews.  
-Search/filter: Users can search for coffee shops and filter based on categories 
-Map: Display various coffee shops based on submitted location
+## Summary
 
-# Technologies and Technical Challenges
+JavaSip is a yelp clone inspired by our love for finding great tasting coffee. Users can post ratings, comments, and pictures related to their favorite coffee shops. Only coffee shops for Oakland are available at the moment. More Bay Area businesses shall be added shortly... 
 
-## Architecture
+Features for this group project were divided out and assigned to team members. I was responsible for the business show page.
 
-JavaSip is built using the MERN stack (MongoDB, Express, React, and Node). The backend will be developed using MongoDB/Express while the frontend will use React/Node.js.
+<img scr="JavaSip/frontend/public/images/homepage.png">
 
-## Technical Challenges
+## Business Show
 
-Users will be able to display a map of coffee shops based on location using Google maps API, which will also render dynamically as the user changes location. 
-`
-# Group Members and Work Breakdown
+Users can view information for a specific coffee shop. The average rating is listed at the top along with the location marked on a Google map. The photos next to the map give a sense of the look and feel for the coffee shop. If a user is logged in, they can click the "Write a Review" button to rate, comment, and post a photo. 
 
-Group members: Tristan Mockler, Tony Ng, Mohamed Abdelhalim
+<img scr="JavaSip/frontend/public/images/business_show.png">
 
-Nov 25-26
-* Build backend skeleton. -Tony
-* Investigate Google map/Yelp map API methods and test collection of data. -Mohamed
-* Build user auth routes, schema, models. -Tristan
-* Build login frontend -Mohamed
+## Express Routing
 
-Nov 27
-* Build business page routes, schema, models. -Tony
-* Build reviews/ratings routes, schema, models. -Tristan
+One of the biggest challenges when working with Express endpoints was building json responses to obtain data that would be maniipulated on the frontend. For example, I needed all reviews for a specific user in order to render total number of photos. The first step was to write a static method to return all reviews given a user id. I then invoked the method in a user route and attached the returned object to a users object, which eventually gets iterated over to give me the total count. 
 
-Dec 2
-* Add search capability - All team members
-* Integrate Google map API - All team members
+```javascript
+ReviewSchema.statics.getReviewsByAuthorId = function (authorId) {
+  return Review.find({ author: authorId })
+    .then(reviews => reviews)
+    .catch(err => err);
+};
+```
 
-Dec 3
-* Touch up - All team members
+```javascript
+router.get("/", async (req, res) => {
+  const usersObj = {};
+  const users = await User.find();
+  for (let index = 0; index < users.length; index++) {
+    const user = users[index].toJSON();
+    const reviews = await Review.getReviewsByAuthorId(user._id);
+    
+    user.reviews = reviews;
+    usersObj[user._id] = user
+  }
+  getImages('profiles').then(avatars => res.json({usersObj, avatars}))
+});
+```
+
+
+
+
+
+
+
 
