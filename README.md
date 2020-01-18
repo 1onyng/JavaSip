@@ -13,13 +13,13 @@ JavaSip is a yelp clone inspired by our love for finding great tasting coffee. U
 
 Features for this group project were divided out and assigned to team members. I was responsible for the business show page.
 
-<img scr="frontend/public/images/homepage.png">
+<img src="frontend/public/images/homepage.png">
 
 ## Business Show
 
 Users can view information for a specific coffee shop. The average rating is listed at the top along with the location marked on a Google map. The photos next to the map give a sense of the look and feel for the coffee shop. If a user is logged in, they can click the "Write a Review" button to rate, comment, and post a photo. 
 
-<img scr="frontend/public/images/business_show.png">
+<img src="frontend/public/images/business_show.png">
 
 ## Express Routing
 
