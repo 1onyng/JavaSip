@@ -28,6 +28,10 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
     review.photos.forEach(() => photoCount += 1)
   })
 
+  if (user.imgURL === "") {
+    user.imgURL = "https://java-sip.s3-us-west-1.amazonaws.com/blank-avatar.jpg";
+  }
+
   return (
     <li>
       <div className="review-item">
