@@ -9,8 +9,6 @@ const businessesReducer = (oldState = {}, action) => {
       imageURLs = action.payload.imgUrls;
       let business = action.payload.business;
       let img = imageURLs.filter(item => item.includes(business._id));
-      debugger
-
       business.imgURL = img;
       return Object.assign({}, oldState, { [business._id]: business });
     case RECEIVE_BUSINESSES: 
