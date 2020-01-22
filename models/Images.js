@@ -131,7 +131,6 @@ function getImages(prefix) {
       }
   });
    })
-   
 }
 
 module.exports = {

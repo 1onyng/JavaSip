@@ -7,7 +7,7 @@ const ReviewsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_BUSINESS:
       return action.payload.reviews;
-    case RECEIVE_REVIEW:
+      case RECEIVE_REVIEW:
       return Object.assign({}, state, {[action.review.data.review._id]: action.review.data.review});
     case REMOVE_REVIEW:
       newState = Object.assign({}, state);

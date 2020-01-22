@@ -11,7 +11,6 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
       });
     }
   }
-
   let deleteButton;
   if (review.author === currentUser.id) {
     deleteButton = (
@@ -27,7 +26,6 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
   user.reviews.forEach(review => {
     review.photos.forEach(() => photoCount += 1)
   })
-
   return (
     <li>
       <div className="review-item">

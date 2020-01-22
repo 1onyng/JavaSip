@@ -48,45 +48,60 @@ router.get('/user/:user_id', (req, res) => {
     );
 });
 
-// get buisiness details
-router.get('/:id', (req, res) => {
-  Business.findById(req.params.id)
-    .then(business => Review.find({ business: business.id })
-      .then(reviews => {
-        getImages('businesses')
-        .then(imgUrls => {
-          const reviewsObj = {};
-          reviews.forEach(review => reviewsObj[review.id] = review);
-          res.send({ business: business, reviews: reviewsObj, imgUrls:imgUrls })
-        }
-      )})
-    )
-    .catch(err =>
-      res.status(404).json({ nobusinessfound: 'No business found with that ID' })
-    );
-});
+// get business details
+// router.get('/:id', (req, res) => {
+//   Business.findById(req.params.id)
+//     .then(business => Review.find({ business: business.id })
+//       .then(reviews => {
+//         getImages('businesses').
+//         then(imgUrls => {
+//           const reviewsObj = {};
+//           reviews.forEach(review => reviewsObj[review.id] = review);
+//           res.send({ business: business, reviews: reviewsObj, imgUrls:imgUrls })
+//         }
+//       )})
+//     )
+//     .catch(err =>
+//       res.status(404).json({ nobusinessfound: 'No business found with that ID' })
+//     );
+// });
+
+router.get('/:id', async (req, res) => {
+  let business = await Business.findById(req.params.id);
+  let reviews = await Review.find({ business: business.id });
+  let imgUrls = await getImages('businesses');
+  const reviewsObj = {};
+  const reviewsImages = {};
+  for (let index = 0; index < reviews.length; index++) {
+    const review = reviews[index]
+    const images = await getImages(review.id);
+    review.photos = images;
+    reviewsImages[review.id] = images;
+    reviewsObj[review.id] = review;
+  }
+  res.send({ business: business, reviews: reviewsObj, imgUrls: imgUrls, reviewImgUrls: reviewsImages })
+})
 
 router.post('/:id/review', (req, res, next) => {
-   const token = req.headers.authorization;
+  const token = req.headers.authorization;
   const user = jwt_decode(token);
 
   if (user) {
-    const newReview = new Review ({
+    const newReview = new Review({
       rate: req.body.rate,
       comment: req.body.comment,
       business: req.body.businessId,
       author: user.id
     })
-      newReview.save().then(review => {
-
-        uploadMultiple(review._id, req, res)
-        .then(data => { 
+    newReview.save().then(review => {
+      uploadMultiple(review._id, req, res)
+        .then(data => {
           getImages(review.id)
-          .then((imgUrls)=>{ 
-            review.photos = imgUrls;
-            review.save();
-            res.send({review, images: imgUrls})});
-        }, (err)=> console.log(err))
+            .then((imgUrls) => {
+              review.save();
+              res.send({ review, images: imgUrls })
+            });
+        }, (err) => console.log(err))
     });
   }
 })

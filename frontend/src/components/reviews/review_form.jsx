@@ -89,13 +89,10 @@ class ReviewForm extends React.Component{
   render(){
     let placeHolder = 'Your review helps others learn about great local businesses.\n\n Please don’t review this business if you received a freebie for writing this review, or if you’re connected in any way to the owner or employees.'
     return(
-    
       <div>
         <div className="search-nav">
           <SearchNav />
         </div>
-
-      
       <form encType="multipart/form-data" className="review-form" onSubmit={this.handleSubmit}>
         <ul className="form-wrapper">
         <h3 className="form-header">Business Name</h3>
