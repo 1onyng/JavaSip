@@ -22,11 +22,10 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
     );
   }
 
-  let photoCount = 0;
-  user.reviews.forEach(review => {
-    review.photos.forEach(() => photoCount += 1)
-  })
-
+  // let photoCount = 0;
+  // user.reviews.forEach(review => {
+  //   review.photos.forEach(() => photoCount += 1)
+  // })
   if (user.imgURL === "") {
     user.imgURL = "https://java-sip.s3-us-west-1.amazonaws.com/blank-avatar.jpg";
   }
@@ -44,7 +43,7 @@ const BusinessShowItem = ({ review, user, removeReview, currentUser}) => {
             </p>
             <p className="profile-small">
               <FontAwesomeIcon icon="camera" />
-              {`${photoCount} photos`}
+              {`${user.photoCount} photos`}
             </p>
           </div>
         </div>

@@ -14,7 +14,8 @@ class BusinessShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchUsers()
-      .then(() => this.props.fetchBusiness(this.props.businessId))
+      .then((data) => {
+        this.props.fetchBusiness(this.props.businessId)})
         .then(() => this.setState({loading: false}));
   }
 
@@ -36,6 +37,7 @@ class BusinessShow extends React.Component {
   }
 
   render() {
+    debugger;
     const { business, reviews, businessId, currentUser, users, removeReview } = this.props;
     // if (this.state.loading) return null;
 

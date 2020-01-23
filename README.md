@@ -40,7 +40,14 @@ router.get("/", async (req, res) => {
   for (let index = 0; index < users.length; index++) {
     const user = users[index].toJSON();
     const reviews = await Review.getReviewsByAuthorId(user._id);
-    
+    let photoCount = 0;
+    for (let i = 0; i < reviews.length; i++) {
+      let review = reviews[i];
+      let photos = await getImages(review.id);
+      photoCount += photos.length;
+
+    }
+    user.photoCount = photoCount;
     user.reviews = reviews;
     usersObj[user._id] = user
   }
