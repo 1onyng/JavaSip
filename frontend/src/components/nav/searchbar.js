@@ -18,11 +18,11 @@ class SearchBar extends React.Component {
   render() {
     return (
         <div className="search-bar">
-            <p className="search-bar-how">Coffee Shops Near</p>
+            <p className="search-bar-how">Coffee Shops In</p>
             <input type="text" className="search-input"
               value={this.state.location}
               onChange={this.update('location')}
-              placeholder="Oakland" />
+              placeholder="Oakland, San Francisco, or San Jose" />
 
             <Link to={`/search/${this.state.location}`}><button className="search-bar-submit"><i className="fas fa-search"></i></button></Link>
           </div>

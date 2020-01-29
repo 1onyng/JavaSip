@@ -48,7 +48,7 @@
   background: white; 
   color: #666; 
   font-weight: bold; 
-  width: 160px; 
+  width: 140px; 
   height: 44px; 
   padding-left: 14px; 
   border-top-left-radius: 3px; 
@@ -58,7 +58,7 @@
 
 .search-input {
   background: white; 
-  width: 225px; 
+  width: 280px; 
   height: 44px; 
   padding: 0px 30px 0px 10px;
   color: black; 
