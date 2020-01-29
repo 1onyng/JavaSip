@@ -37,7 +37,6 @@ class BusinessShow extends React.Component {
   }
 
   render() {
-    debugger;
     const { business, reviews, businessId, currentUser, users, removeReview } = this.props;
     // if (this.state.loading) return null;
 

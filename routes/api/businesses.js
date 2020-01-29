@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 router.get('/search/:searchLocation', async (req, res) => {
   const businessesObj = {};
   const businesses = await Business.find({ city: req.params.searchLocation });
-  for (let index = businesses.length - 1; index > 0; index--) {
+  for (let index = businesses.length - 1; index >= 0; index--) {
     const business = businesses[index].toJSON();
     const reviews = await Review.getReviewsByBusinessId(business._id);
 
