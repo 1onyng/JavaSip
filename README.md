@@ -6,20 +6,54 @@
 * Express 
 * React
 * NodeJS
+* Google Map API
 
 ## Summary
 
-JavaSip is a yelp clone inspired by our love for finding great tasting coffee. Users can post ratings, comments, and pictures related to their favorite coffee shops. Only coffee shops for Oakland are available at the moment. More Bay Area businesses shall be added shortly... 
+JavaSip is a yelp clone inspired by our love for finding great tasting coffee. Users can search for coffee shops by location (Oakland, San Francisco, or San Jose) and then post ratings, comments, and pictures related to these businesses. 
 
-Features for this group project were divided out and assigned to team members. I was responsible for the business show page.
+Features for this group project were divided and designated to team members. I was responsible for both front-end and back-end development for the business show page as well as modifying the Google Map API to handle search functionality. 
 
 <img src="frontend/public/images/homepage.png">
 
 ## Business Show
 
-Users can view information for a specific coffee shop. The average rating is listed at the top along with the location marked on a Google map. The photos next to the map give a sense of the look and feel for the coffee shop. If a user is logged in, they can click the "Write a Review" button to rate, comment, and post a photo. 
+Users can view information for a specific coffee shop. The average rating is listed at the top along with the location marked on a Google map. The photos next to the map offers a sense of the ambience for a particular coffee shop. If a user is logged in, they can click the "Write a Review" button to rate, comment, and post a photo. 
 
 <img src="frontend/public/images/business_show.png">
+
+## Google Map API
+
+The map was originally set up using a fixed location for its center. This forced the user to scroll through the map to find specific coffee shops. By threading the search term as props to the map component and defining longitudinal and latitudinal boundaries based off the search term, I was able to recenter the map and display all business markers for a given location:
+
+<img src="frontend/public/images/google_map.png">
+
+```javascript
+  render() {
+    let center;
+    if (this.props.search === "Oakland") {
+      center = { lat: 37.834416, lng: -122.300707 };
+    } else if (this.props.search === "San Francisco") {
+      center = { lat: 37.7758, lng: -122.435 };
+    } else if (this.props.search === "San Jose") {
+      center = { lat: 37.375240, lng: -121.877454 };
+    }
+
+    return (
+      
+      <div style={{ height: '325px', width: '300px' }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: APIkey  }}
+          defaultCenter={center}
+          defaultZoom={11}
+        >
+          {this.placeMarkers()}
+
+        </GoogleMapReact>
+      </div>
+    );
+  }
+  ```
 
 ## Express Routing
 
