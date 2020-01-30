@@ -11,7 +11,6 @@ class Map extends Component {
   }
 
   placeMarkers() {
-    debugger;
     let businessList = this.props.businesses; 
     return businessList.map((business, i) => {
       if (business.lat && business.long ) {

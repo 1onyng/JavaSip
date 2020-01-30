@@ -48,8 +48,9 @@ class BusinessSearch extends React.Component {
           </div>
           <div className="business-search-address">
             <div className="business-info">
-              <p>{business.phone}</p>
+              <p>{business.street_address}</p>
               <p>{business.city}, {business.state}</p>
+              <p>{business.phone}</p>
           </div>
         </div>
         </div>
