@@ -73,7 +73,7 @@ class BusinessSearch extends React.Component {
             {this.getBusinesses()}
           </div>
           <div className="map-div"> 
-            <Map businesses={this.props.businesses} /> 
+            <Map businesses={this.props.businesses} search={this.props.search}/> 
           </div>
         </div> 
         </div>

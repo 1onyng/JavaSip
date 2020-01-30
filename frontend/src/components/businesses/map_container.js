@@ -7,7 +7,6 @@ const mapStateToProps = (state, ownProps) => {
   const businesses = ownProps.businesses;
   return {
     businesses,
-    
   }
 }
 
