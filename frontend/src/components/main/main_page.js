@@ -58,9 +58,9 @@ class MainPage extends React.Component {
         <NavBar />
         <SearchBar />
         <footer className="footer-main-page">
-          <a href="https://github.com/1onyng">Tony</a>
-          <a href="https://github.com/tmockler22">Tristan</a>
-          <a href="https://github.com/RyanGonzalezUSA">Mohamed</a>
+          <a href="https://github.com/1onyng">Tony Ng</a>
+          <a href="https://github.com/tmockler22">Tristan Mockler</a>
+          <a href="https://github.com/RyanGonzalezUSA">Mohamed Abdelhalim</a>
         </footer>
       </div>
         <div className="business-index">
