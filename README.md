@@ -24,36 +24,40 @@ Users can view information for a specific coffee shop. The average rating is lis
 
 ## Google Map API
 
-The map was originally set up using a fixed location for its center. This forced the user to scroll through the map to find specific coffee shops. By threading the search term as props to the map component and defining longitudinal and latitudinal boundaries based off the search term, I was able to recenter the map and display all business markers for a given location:
+The map was originally set up using a fixed location for its center. This forced the user to scroll through the map to find specific coffee shops. Also, the center would not rerender when a new location was submitted in the search field. 
+
+By passing the search term as props to the map component and reassigning longitudinal and latitudinal boundaries in a lifecycle method to compares current and incoming props, I was able to recenter the map and display all business markers for a given location:
 
 <img src="frontend/public/images/google_map.png">
 
 ```javascript
-  render() {
-    let center;
-    if (this.props.search === "Oakland") {
-      center = { lat: 37.834416, lng: -122.300707 };
-    } else if (this.props.search === "San Francisco") {
-      center = { lat: 37.7758, lng: -122.435 };
-    } else if (this.props.search === "San Jose") {
-      center = { lat: 37.375240, lng: -121.877454 };
+componentWillReceiveProps(nextProps) {
+    if (nextProps.search !== this.props.search) {
+      if (nextProps.search === "Oakland") {
+        this.setState({center: { lat: 37.834416, lng: -122.300707 }});
+      } else if (nextProps.search === "San Francisco") {
+        this.setState({center: { lat: 37.7758, lng: -122.435 }});
+      } else if (nextProps.search === "San Jose") {
+        this.setState({center: { lat: 37.375240, lng: -121.877454 }});
+      }
     }
+  }
 
+  render() {
     return (
-      
       <div style={{ height: '325px', width: '300px' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: APIkey  }}
-          defaultCenter={center}
+          center={this.state.center}
           defaultZoom={11}
         >
           {this.placeMarkers()}
-
         </GoogleMapReact>
       </div>
     );
   }
-  ```
+}  
+```
 
 ## Express Routing
 
