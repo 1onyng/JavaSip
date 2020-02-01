@@ -6,12 +6,27 @@ import RatingStar from "../rating/star_rating_container";
 
 class BusinessSearch extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = { search: "" };
+    // this.updateSearch = this.updateSearch.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchBusinesses(this.props.search);
+    this.setState({ search: this.props.search });
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.search !== this.props.search) {
+      this.props.fetchBusinesses(this.props.search);
+      // this.setState({ search: this.props.search });
+      // this.updateSearch();
+    }
+  }
+
+  // updateSearch() {
+  //   this.setState({ search: this.props.search })
+  // }
 
   getPrice(n) {
     let price = "";
@@ -59,7 +74,15 @@ class BusinessSearch extends React.Component {
   }
 
   render() {
-
+    // let center;
+    // if (this.props.search === "Oakland") {
+    //   center = { lat: 37.834416, lng: -122.300707 };
+    // } else if (this.props.search === "San Francisco") {
+    //   center = { lat: 37.7758, lng: -122.435 };
+    // } else if (this.props.search === "San Jose") {
+    //   center = { lat: 37.375240, lng: -121.877454 };
+    // }
+    debugger;
     return (
       <div>
         <div className="search-nav">
@@ -74,7 +97,11 @@ class BusinessSearch extends React.Component {
             {this.getBusinesses()}
           </div>
           <div className="map-div"> 
-            <Map businesses={this.props.businesses} search={this.props.search}/> 
+            <Map businesses={this.props.businesses}
+                  search={this.props.search}
+                  // search={this.state.search}
+                  // search={center}
+            /> 
           </div>
         </div> 
         </div>
