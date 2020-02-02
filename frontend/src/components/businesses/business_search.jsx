@@ -8,7 +8,6 @@ class BusinessSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = { search: "" };
-    // this.updateSearch = this.updateSearch.bind(this);
   }
 
   componentDidMount() {
@@ -19,14 +18,8 @@ class BusinessSearch extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.search !== this.props.search) {
       this.props.fetchBusinesses(this.props.search);
-      // this.setState({ search: this.props.search });
-      // this.updateSearch();
     }
   }
-
-  // updateSearch() {
-  //   this.setState({ search: this.props.search })
-  // }
 
   getPrice(n) {
     let price = "";
@@ -74,24 +67,20 @@ class BusinessSearch extends React.Component {
   }
 
   render() {
-    // let center;
-    // if (this.props.search === "Oakland") {
-    //   center = { lat: 37.834416, lng: -122.300707 };
-    // } else if (this.props.search === "San Francisco") {
-    //   center = { lat: 37.7758, lng: -122.435 };
-    // } else if (this.props.search === "San Jose") {
-    //   center = { lat: 37.375240, lng: -121.877454 };
-    // }
-    debugger;
+    let browseMsg = <p className="search-page-title">Browsing {this.props.search} Coffee Shops</p>
+
+    if (this.props.businesses.length === 0) {
+      browseMsg = <><p className="search-page-title">No Results for {this.props.search}. Please search for "Oakland", "San Francisco", or "San Jose".</p></>
+    }
     return (
       <div>
         <div className="search-nav">
           <SearchNav />
         </div>
         <div className="title-div">
-          <p className="search-page-title">Browsing {this.props.search} Coffee Shops</p>
+          {browseMsg}
         </div>
-        <p className="search-page-subtitle">All Results</p>
+        {/* <p className="search-page-subtitle">All Results</p> */}
          <div className="index-contents">
           <div className="search-business-list">
             {this.getBusinesses()}
@@ -99,8 +88,6 @@ class BusinessSearch extends React.Component {
           <div className="map-div"> 
             <Map businesses={this.props.businesses}
                   search={this.props.search}
-                  // search={this.state.search}
-                  // search={center}
             /> 
           </div>
         </div> 
