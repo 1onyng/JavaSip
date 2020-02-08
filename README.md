@@ -93,6 +93,11 @@ router.get("/", async (req, res) => {
 });
 ```
 
+## Future Implementations
+
+* Update markers and redisplay businesses according to map boundaries
+* Add more locations and seed data 
+
 
 
 
