@@ -26,7 +26,7 @@ Users can view information for a specific coffee shop. The average rating is lis
 
 The map was originally set up using a fixed location for its center. This forced the user to scroll through the map to find specific coffee shops. Also, the center would not rerender when a new location was submitted in the search field. 
 
-By passing the search term as props to the map component and reassigning longitudinal and latitudinal boundaries in a lifecycle method to compares current and incoming props, I was able to recenter the map and display all business markers for a given location:
+By passing the search term as props to the map component and reassigning longitudinal and latitudinal boundaries in a lifecycle method to compare current and incoming props, I was able to recenter the map and display all business markers for a given location:
 
 <img src="frontend/public/images/google_map.png">
 
