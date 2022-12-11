@@ -33,7 +33,7 @@
     "busboy-body-parser": "^0.3.2",
     "concurrently": "^5.0.0",
     "connect-busboy": "0.0.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "mongoose": "^5.7.12",
